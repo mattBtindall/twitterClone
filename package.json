@@ -1,0 +1,28 @@
+{
+  "name": "twitterclone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js --mode='production'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattBtindall/twitterClone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattBtindall/twitterClone/issues"
+  },
+  "homepage": "https://github.com/mattBtindall/twitterClone#readme",
+  "devDependencies": {
+    "file-loader": "^6.2.0",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  }
+}
