@@ -1,0 +1,45 @@
+<div class="avatar-container d-flex py-2 ps-3 position-relative justify-content-md-center">
+    {% if user is defined %}
+
+    {% else %}
+        {{ include ('shared/_icon.html.twig', {name: 'question-circle-fill', size: 32, classes: "position-absolute"})}}
+    {% endif %}
+</div>
+
+<div class="pt-4 p-3 mt-4">
+    {% if user is defined %}
+        <img src="" alt="" class="">
+        <div>
+            <div class="mb-2">
+                <div>{{ user.name }}</div>
+                <div>{{ user.email }}</div>
+                <div class="d-flex">
+                    <div>
+                        {{ user.following.count }} <span>following</span>
+                    </div>
+                    <div>
+                        {{ user.followers.count }} <span>followers</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="mb-2">
+                <div>
+                    {{include('shared/_icon.html.twig', {name: 'person-cirlce', size: 32})}} <span>Profile</span>
+                </div>
+                <div>
+                    {{include('shared/_icon.html.twig', {name: 'house', size: 32})}} <span>Home</span>
+                </div>
+                <div>
+                    {{include('shared/_icon.html.twig', {name: 'Explore', size: 33})}} <span>Explore</span>
+                </div>
+            </nav>
+            <a href="#" class="btn btn-primary">Post</a>
+        </div>
+    {% else %}
+        <div class="d-flex justify-content-center flex-column gap-2">
+            <p class="text-center">You're not signed in, please select one of the buttons below</p>
+            <a href="#" class="btn btn-primary">Login In</a>
+            <a href="#" class="btn btn-primary">Sign Up</a>
+        </div>
+    {% endif %}
+</div>

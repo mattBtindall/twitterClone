@@ -1,8 +1,15 @@
-{{ include('base.html.twig') }}
+{% extends 'base.html.twig' %}
 {# {{include('shared/_icon.html.twig', {name: 'share-fill'})}} #}
 
-{% block title %} <title>{{ pageTitle }}</title> {% endblock %}
+{% block title %} {{ pageTitle }} {% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Test</h1>
+    {{include('shared/_icon.html.twig', {name: 'share-fill'})}} <span>This is a test</span>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

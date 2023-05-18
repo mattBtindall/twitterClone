@@ -2,12 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        {% block title %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link rel="stylesheet" href="{{ asset('styles/bundled.min.css') }}">
+        <script src="{{ asset('main.js') }}"></script>
     </head>
     <body>
-        {% block sidebar %}{% endblock %}
-        {% block body %}{% endblock %}
+        <section class="page border border-dark overflow-hidden position-relative d-block d-md-flex">
+            <div class="border border-primary sidebar">{{ include('_sidebar.html.twig') }}</div>
+            <div class="border border-secondary main px-3">
+                <h1>{{ pageTitle }}</h1>
+                <div class="main-content ">{% block content %}{% endblock %}</div>
+            </div>
+        </section>
     </body>
 </html>
