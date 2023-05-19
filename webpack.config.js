@@ -2,7 +2,8 @@ const path = require('path');
 
 module.exports = {
     entry: [
-        __dirname + '/assets/styles/index.scss'
+        __dirname + '/assets/styles/index.scss',
+        __dirname + '/assets/js/index.js'
     ],
     output: {
         path: path.resolve(__dirname, 'public'),
