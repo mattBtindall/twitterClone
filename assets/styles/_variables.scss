@@ -1,2 +1,12 @@
-$primary: darken(#428bca, 20%);
-$secondary:#e59866;
+$primary:  #d35400;
+// $secondary: #FFA07A;
+
+$overlay-color: #fbeee6;
+
+$z-index-base: 1;
+$z-index-upper-base: 2;
+$z-index-middle: 3;
+$z-index-upper-middle: 4;
+$z-index-top: 5;
+
+$sidebar-transition: 300ms;

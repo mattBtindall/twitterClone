@@ -1,0 +1,31 @@
+.sidebar {
+    position: fixed;
+    min-height: 100vh;
+    max-width: 90vw;
+    z-index: $z-index-top;
+    background: $gray-300;
+    transform: translate3d(-100%, 0, 0);
+    transition: transform $sidebar-transition ease-in-out;
+
+    &.active {
+        transform: translate3d(0%, 0, 0);
+    }
+
+    @include media-breakpoint-up(md) {
+        flex: 1.5 1 0;
+        position: static;
+        transform: translate3d(0%, 0, 0);
+    }
+
+    @include media-breakpoint-up(lg) {
+        flex: 1 1 0;
+    }
+
+    &-icon {
+        z-index: 6;
+    }
+}
+
+.main {
+    flex: 3 1 0;
+}

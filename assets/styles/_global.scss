@@ -1,0 +1,36 @@
+a {
+    text-decoration: inherit;
+    font-weight: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.body-overlay {
+    z-index: $z-index-base;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $overlay-color;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $sidebar-transition ease-in;
+}
+
+body.active .body-overlay {
+    visibility: visible;
+    opacity: .25;
+
+    @include media-breakpoint-up(md) {
+        display: none;
+    }
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.page {
+    max-width: map-get($grid-breakpoints, 'xl');
+}
