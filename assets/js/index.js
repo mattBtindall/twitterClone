@@ -1,3 +1,5 @@
+import { getAbsoluteHeight } from "./utils"
+
 window.onload = function() {
     const sidebarIconEl = document.querySelector('.sidebar-icon')
     const sidebarEl = document.querySelector('.sidebar')
