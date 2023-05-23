@@ -1,9 +1,11 @@
+$sidebar-bg: $gray-300;
+
 .sidebar {
     position: fixed;
     min-height: 100vh;
     max-width: 90vw;
     z-index: $z-index-top;
-    background: $gray-300;
+    background: $sidebar-bg;
     transform: translate3d(-100%, 0, 0);
     transition: transform $sidebar-transition ease-in-out;
 
@@ -28,4 +30,29 @@
 
 .main {
     flex: 3 1 0;
+}
+
+.search-input {
+    border: 0;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    background-color: $sidebar-bg;
+
+    &::placeholder {
+        opacity: 1;
+        color: black;
+        font-weight: bold;
+    }
+
+    &:hover {
+        outline: 1px solid $primary;
+
+        &::placeholder {
+            color: $primary;
+        }
+    }
+
+    &:focus {
+        outline: 1px solid $primary;
+    }
 }

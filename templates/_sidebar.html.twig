@@ -16,15 +16,20 @@
                 </div>
             </div>
             <nav class="mb-4 d-flex flex-column gap-3">
-                <a href="#" class="d-flex align-items-center gap-2 fw-bold">
+                <a href="#" class="d-flex align-items-center gap-3 fw-bold">
                     {{include('shared/_icon.html.twig', {name: 'person-circle', size: 32})}} <span>Profile</span>
                 </a>
-                <a href="#" class="d-flex align-items-center gap-2 fw-bold">
+                <a href="#" class="d-flex align-items-center gap-3 fw-bold">
                     {{include('shared/_icon.html.twig', {name: 'house', size: 32})}} <span>Home</span>
                 </a>
-                <a href="#" class="d-flex align-items-center gap-2 fw-bold">
-                    {{include('shared/_icon.html.twig', {name: 'hash', size: 33})}} <span>Explore</span>
+                <a href="#" class="d-flex align-items-center gap-3 fw-bold">
+                    {{include('shared/_icon.html.twig', {name: 'hash', size: 32})}} <span>Explore</span>
                 </a>
+                <div class="d-flex align-items-center gap-2 fw-bold">
+                    {{include('shared/_icon.html.twig', {name: 'search', size: 32})}}
+                    <input type="text" class="search-input rounded ps-22" placeholder="Search">
+                </a>
+                </div>
             </nav>
             <a href="#" class="btn btn-primary w-100">Post</a>
         </div>
