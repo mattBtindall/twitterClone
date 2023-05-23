@@ -14,11 +14,19 @@ window.onload = function() {
         // if position is fixed then we want to be able to open and close the side bar
         const sideBarPosition = window.getComputedStyle(sidebarEl).getPropertyValue("position")
         if (sideBarPosition !== 'fixed') return
-
-            toggleSidebar()
-        })
+        toggleSidebar()
+    })
 
     bodyOverlayEl.addEventListener('click', function() {
         toggleSidebar()
     })
+
+    setMainContainerHeight()
+}
+
+function setMainContainerHeight() {
+    const mainContentEl = document.querySelector('.main-content')
+    const mainTitleEl = document.querySelector('.main-title-container')
+    const mainContentHeight = window.innerHeight - getAbsoluteHeight(mainTitleEl)
+    mainContentEl.style.height = mainContentHeight + 'px'
 }

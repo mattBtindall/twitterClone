@@ -12,7 +12,7 @@
 
         {# icon for the sidebar #}
         {% if user is defined %}
-            <img src="{{ asset(profiles ~ user.avatar) }}" alt="dogs" style="width: 64px;" class=" sidebar-icon position-fixed ms-3 mt-3 rounded-circle bg-dark p-2">
+            <img src="{{ asset(profiles ~ user.avatar) }}" alt="dogs" style="width: 64px;" class=" sidebar-icon position-fixed ms-3 mt-1 rounded-circle bg-dark p-2">
         {% else %}
             {{ include ('shared/_icon.html.twig', { name : 'question-circle-fill', size: 32, classes: "sidebar-icon position-fixed ms-3 mt-3" })}}
         {% endif %}
@@ -20,7 +20,9 @@
         <section class="page overflow-hidden position-relative d-block d-md-flex">
             <div class="sidebar shadow">{{ include('_sidebar.html.twig') }}</div>
             <div class="main">
-                <h1 class="py-1 px-3">{{ pageTitle }}</h1>
+                <div class="main-title-container">
+                    <h1 class="">{{ pageTitle }}</h1>
+                </div>
                 <div class="main-content px-3">{% block content %}{% endblock %}</div>
             </div>
         </section>
