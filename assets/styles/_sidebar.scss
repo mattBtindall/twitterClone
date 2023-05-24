@@ -26,6 +26,10 @@ $sidebar-bg: $gray-300;
     &-icon {
         z-index: 6;
     }
+
+    nav > * {
+        @extend .standard-transition;
+    }
 }
 
 .main {
@@ -39,20 +43,21 @@ $sidebar-bg: $gray-300;
     background-color: $sidebar-bg;
 
     &::placeholder {
+        @extend .standard-transition;
         opacity: 1;
         color: black;
         font-weight: bold;
     }
 
-    &:hover {
+    &:hover::placeholder {
+        color: $primary;
+    }
+
+    &:focus {
         outline: 1px solid $primary;
 
         &::placeholder {
             color: $primary;
         }
-    }
-
-    &:focus {
-        outline: 1px solid $primary;
     }
 }
