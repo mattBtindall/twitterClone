@@ -49,3 +49,18 @@ body.active .body-overlay {
 .standard-transition {
     transition: all .3s ease-in-out;
 }
+
+.post-container {
+    transition: max-height .3s ease-in-out, padding .3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+
+    &.active {
+        max-height: 100vh;
+        padding: 1rem;
+        border-bottom: $body-outline;
+        border-right: $body-outline;
+    }
+}

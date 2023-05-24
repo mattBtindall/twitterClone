@@ -8,7 +8,7 @@ function setSideBar() {
         document.body.classList.toggle('active')
     }
 
-    sidebarIconEl.addEventListener('click', function() {
+    sidebarIconEl.addEventListener('click', () => {
         // if position is fixed then we want to be able to open and close the side bar
         const sideBarPosition = window.getComputedStyle(sidebarEl).getPropertyValue("position")
         if (sideBarPosition !== 'fixed') return
@@ -20,6 +20,17 @@ function setSideBar() {
     })
 }
 
+function setPostSection() {
+    const postBtnEl = document.querySelector('.post-btn')
+    const postContainerEl = document.querySelector('.post-container')
+
+    postBtnEl.addEventListener('click', () => {
+        postContainerEl.classList.toggle('active')
+        postBtnEl.innerText = postContainerEl.classList.contains('active') ? 'Hide Post' : 'Post'
+    })
+}
+
 export function setEventlisteners() {
     setSideBar()
+    setPostSection()
 }
