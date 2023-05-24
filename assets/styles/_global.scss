@@ -46,26 +46,6 @@ body.active .body-overlay {
     max-width: map-get($grid-breakpoints, 'xl');
 }
 
-.main-content {
-    overflow-y: scroll;
-    border-right: $body-outline;
-}
-
-.main-title-container {
-    border-bottom: $body-outline;
-    border-right: $body-outline;
-    text-align: center;
-    padding: 1rem;
-
-    @include media-breakpoint-up(md) {
-        text-align: left;
-    }
-
-    > h1 {
-        margin-bottom: 0;
-    }
-}
-
 .standard-transition {
     transition: all .3s ease-in-out;
 }

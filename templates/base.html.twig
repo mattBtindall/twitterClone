@@ -10,19 +10,20 @@
     <body>
         <div class="body-overlay"></div>
 
-        {# icon for the sidebar #}
-        {% if user is defined %}
-            <img src="{{ asset(profiles ~ user.avatar) }}" alt="dogs" style="width: 64px;" class=" sidebar-icon position-fixed ms-3 mt-1 rounded-circle bg-dark p-2">
-        {% else %}
-            {{ include ('shared/_icon.html.twig', { name : 'question-circle-fill', size: 32, classes: "sidebar-icon position-fixed ms-3 mt-3" })}}
-        {% endif %}
-
+        {{ include('shared/_avatar.html.twig', { iconClasses: 'sidebar-icon position-fixed ms-3 mt-1'})}}
         <section class="page overflow-hidden position-relative d-block d-md-flex">
-            <div class="sidebar shadow">{{ include('_sidebar.html.twig') }}</div>
+            <aside class="sidebar shadow">{{ include('_sidebar.html.twig') }}</aside>
             <div class="main">
-                <div class="main-title-container">
+                <header class="main-title-container">
                     <h1 class="">{{ pageTitle }}</h1>
-                </div>
+                </header>
+                <form class="post-container d-flex gap-2 p-3 align-items-start border-bottom border-end">
+                    {{ include('shared/_avatar.html.twig', { iconClasses: ''})}}
+                    <div class="d-flex flex-column flex-grow-1 align-items-end gap-2">
+                        <textarea class="form-control" type="text" placeholder="Please type your post here..."></textarea>
+                        <button class="btn btn-primary w-25">Post</button>
+                    </div>
+                </form>
                 <div class="main-content px-3">{% block content %}{% endblock %}</div>
             </div>
         </section>
