@@ -1,0 +1,7 @@
+// Override bootstrap classes
+
+.btn-primary {
+    @extend .btn-primary, .standard-transition;
+    color: white;
+    font-weight: bold;
+}
