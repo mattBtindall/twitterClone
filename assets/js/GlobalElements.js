@@ -1,10 +1,10 @@
 export class GlobalElements {
     constructor() {
-        this.postContainerEl = document.querySelector('.post-container')
+        // this.postContainerEl = document.querySelector('.post-container')
     }
 
     getElement(el) {
-        /** to call logic when getting element name the method 'elName' then the literal word Logic */
+        /** to call logic when getting element, name the method 'elName' then the literal word Logic */
         if (this.constructor.prototype.hasOwnProperty(el + 'Logic') && !this[el + 'Logic'](this[el])) {
             return
         }

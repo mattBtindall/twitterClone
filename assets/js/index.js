@@ -4,6 +4,6 @@ import { GlobalElements } from "./GlobalElements"
 
 window.onload = function() {
     const SharedElements = new GlobalElements()
-    const EventListener = new EventListeners(SharedElements)
     const DomManipulator = new DomManipulation(SharedElements)
+    const EventListener = new EventListeners(SharedElements, DomManipulator)
 }

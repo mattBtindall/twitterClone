@@ -1,10 +1,10 @@
 export class EventListeners {
-    constructor(sharedElements) {
+    constructor(sharedElements, DomManipulator) {
         this.sharedElements = {
             sidebarEl: document.querySelector('.sidebar'),
-            postContainerEl: sharedElements.getElement('postContainerEl')
         }
 
+        this.DomManipulator = DomManipulator
         this.setEventlisteners()
     }
 
@@ -31,10 +31,12 @@ export class EventListeners {
 
     setPostSection() {
         const postBtnEl = document.querySelector('.post-btn')
+        const postContainerEl = document.querySelector('.post-container')
 
         postBtnEl.addEventListener('click', () => {
-            this.sharedElements.postContainerEl.classList.toggle('active')
-            postBtnEl.innerText = this.sharedElements.postContainerEl.classList.contains('active') ? 'Hide Post' : 'Post'
+            postContainerEl.classList.toggle('active')
+            postBtnEl.innerText = postContainerEl.classList.contains('active') ? 'Hide Post' : 'Post'
+            setTimeout(() => this.DomManipulator.setMainContainerHeight(), 310) // wait until the post container has animatied it's height
             this.toggleSidebar()
         })
     }
