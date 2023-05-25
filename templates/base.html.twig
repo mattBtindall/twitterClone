@@ -26,7 +26,14 @@
                         </div>
                     </form>
                 </header>
-                <div class="main-content px-3">{% block content %}{% endblock %}</div>
+                <div class="main-content-container">
+                    <section class="main-content px-3">
+                        {% block content %}{% endblock %}
+                    </section>
+                    <footer class="py-3 text-center border-top">
+                        This is just some footer - &#169; Copyright Matthew Bindall <span class="year-output"></span>
+                    </footer>
+                </div>
             </div>
         </section>
     </body>
