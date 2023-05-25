@@ -12,18 +12,20 @@
 
         {{ include('shared/_avatar.html.twig', { iconClasses: 'sidebar-icon position-fixed ms-3 mt-1'})}}
         <section class="page overflow-hidden position-relative d-block d-md-flex">
-            <aside class="sidebar shadow">{{ include('_sidebar.html.twig') }}</aside>
+            <aside class="sidebar">{{ include('_sidebar.html.twig') }}</aside>
             <div class="main">
-                <header class="main-title-container">
-                    <h1 class="">{{ pageTitle }}</h1>
-                </header>
-                <form class="post-container d-flex gap-2 align-items-start">
-                    {{ include('shared/_avatar.html.twig', { iconClasses: ''})}}
-                    <div class="d-flex flex-column flex-grow-1 align-items-end gap-2">
-                        <textarea class="form-control" type="text" placeholder="Please type your post here..."></textarea>
-                        <button class="btn btn-primary w-25">Post</button>
+                <header class="main-header">
+                    <div class="main-title-container">
+                        <h1 class="">{{ pageTitle }}</h1>
                     </div>
-                </form>
+                    <form class="post-container d-flex gap-2 align-items-start">
+                        {{ include('shared/_avatar.html.twig', { iconClasses: ''})}}
+                        <div class="d-flex flex-column flex-grow-1 align-items-end gap-2">
+                            <textarea class="form-control" type="text" placeholder="Please type your post here..."></textarea>
+                            <button class="btn btn-primary w-25">Post</button>
+                        </div>
+                    </form>
+                </header>
                 <div class="main-content px-3">{% block content %}{% endblock %}</div>
             </div>
         </section>

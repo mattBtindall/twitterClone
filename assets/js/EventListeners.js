@@ -1,7 +1,8 @@
 export class EventListeners {
-    constructor() {
+    constructor(sharedElements) {
         this.sharedElements = {
-            sidebarEl: document.querySelector('.sidebar')
+            sidebarEl: document.querySelector('.sidebar'),
+            postContainerEl: sharedElements.getElement('postContainerEl')
         }
 
         this.setEventlisteners()
@@ -30,11 +31,10 @@ export class EventListeners {
 
     setPostSection() {
         const postBtnEl = document.querySelector('.post-btn')
-        const postContainerEl = document.querySelector('.post-container')
 
         postBtnEl.addEventListener('click', () => {
-            postContainerEl.classList.toggle('active')
-            postBtnEl.innerText = postContainerEl.classList.contains('active') ? 'Hide Post' : 'Post'
+            this.sharedElements.postContainerEl.classList.toggle('active')
+            postBtnEl.innerText = this.sharedElements.postContainerEl.classList.contains('active') ? 'Hide Post' : 'Post'
             this.toggleSidebar()
         })
     }
