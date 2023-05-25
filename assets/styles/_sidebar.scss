@@ -11,12 +11,14 @@ $sidebar-bg: $gray-300;
 
     &.active {
         transform: translate3d(0%, 0, 0);
+        box-shadow: $box-shadow;
     }
 
     @include media-breakpoint-up(md) {
         flex: 1.5 1 0;
         position: static;
         transform: translate3d(0%, 0, 0);
+        box-shadow: $box-shadow;
     }
 
     @include media-breakpoint-up(lg) {
