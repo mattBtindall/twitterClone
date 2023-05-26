@@ -1,0 +1,15 @@
+<a href="#" class="post border-bottom p-3 d-inline-block {{ classes|default('') }}">
+    <header class="post__header d-flex align-items-end gap-2 flex-wrap">
+        <h3 class="post__author h4 m-0">{{ post.user.name }}</h3>
+        <span class="post__email text-muted lh-sm">{{ post.user.email }}</span>
+        <span class="post__date text-muted lh-sm">{{ post.created|date('Y-m-d') }}</span>
+    </header>
+    <div class="post__content py-3">
+        {{ post.content }}
+    </div>
+    <footer class="post__footer d-flex justify-content-between">
+        {{include('shared/_icon.html.twig', {name: 'chat-left', size: 24, classes: 'post__icon'})}}
+        {{include('shared/_icon.html.twig', {name: 'hand-thumbs-up', size: 24, classes: 'post__icon'})}}
+        {{include('shared/_icon.html.twig', {name: 'share', size: 24, classes: 'post__icon'})}}
+    </footer>
+</a>

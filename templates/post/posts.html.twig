@@ -4,12 +4,5 @@
 {% block title %} {{ pageTitle }} {% endblock %}
 
 {% block content %}
-    <h1>Test</h1>
-    {{include('shared/_icon.html.twig', {name: 'share-fill'})}} <span>This is a test</span>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    {{ include('post/_posts-list.html.twig') }}
 {% endblock %}

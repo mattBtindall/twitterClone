@@ -1,0 +1,5 @@
+.post__footer {
+    @include media-breakpoint-up(lg) {
+        width: 75%;
+    }
+}
