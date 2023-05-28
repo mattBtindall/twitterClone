@@ -44,6 +44,7 @@ $sidebar-bg: $gray-300;
     padding-top: .25rem;
     padding-bottom: .25rem;
     background-color: $sidebar-bg;
+    min-width: 0;
 
     &::placeholder {
         @extend .standard-transition;
