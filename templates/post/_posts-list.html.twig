@@ -3,7 +3,9 @@
 {% else %}
     <div class="post__list d-flex flex-column">
         {% for post in posts %}
-            {{include('post/_post.html.twig', {post: post})}}
+            <a href="{{ path('app_show', {id : post.id, post: post}) }}" class="d-inline-block">
+                {{include('post/_post.html.twig', {post: post})}}
+            </a>
         {% endfor %}
     </div>
 {% endif %}
