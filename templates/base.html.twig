@@ -15,8 +15,12 @@
             <aside class="sidebar">{{ include('_sidebar.html.twig') }}</aside>
             <div class="main">
                 <header class="main-header">
-                    <div class="main-title-container">
-                        <h1 class="">{{ pageTitle }}</h1>
+                    <div class="main-title-container px-3">
+                        <h1 class="py-1">{{ pageTitle }}</h1>
+                    </div>
+                    <div class="breadcrumbs text-muted px-3 py-1 border-bottom border-end">
+                        <a href="{{ path('app_index') }}">Home</a>
+                        {% block breadcrumbs %}{% endblock %}
                     </div>
                     <form class="post-container d-flex gap-2 align-items-start">
                         {{ include('shared/_avatar.html.twig', { iconClasses: ''})}}

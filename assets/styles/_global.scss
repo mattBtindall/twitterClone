@@ -50,6 +50,14 @@ body.active .body-overlay {
     transition: all .3s ease-in-out;
 }
 
+.breadcrumbs {
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+        text-align: left;
+    }
+}
+
 .post-container {
     transition: max-height .3s ease-in-out, padding .3s ease-in-out;
     max-height: 0;

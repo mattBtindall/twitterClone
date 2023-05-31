@@ -31,7 +31,7 @@ class PostController extends AbstractController
         }))[0];
 
         return $this->render('post/post.html.twig', [
-            'pageTitle' => 'Show',
+            'pageTitle' => 'Post',
             'user' => USER,
             'post' => $post
         ]);

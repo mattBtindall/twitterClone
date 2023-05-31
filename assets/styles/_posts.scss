@@ -4,10 +4,8 @@
 }
 
 .main-title-container {
-    border-bottom: $body-outline;
     border-right: $body-outline;
     text-align: center;
-    padding: 1rem;
 
     @include media-breakpoint-up(md) {
         text-align: left;
