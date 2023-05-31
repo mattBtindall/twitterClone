@@ -19,13 +19,13 @@
                         <h1 class="py-1">{{ pageTitle }}</h1>
                     </div>
                     <div class="breadcrumbs text-muted px-3 py-1 border-bottom border-end">
-                        <a href="{{ path('app_index') }}">Home</a>
+                        <a href="{{ path('app_posts') }}">Home</a>
                         {% block breadcrumbs %}{% endblock %}
                     </div>
-                    <form class="post-container d-flex gap-2 align-items-start">
+                    <form class="post-container d-flex gap-2 align-items-start {% if editPost is defined %}active{% endif %}">
                         {{ include('shared/_avatar.html.twig', { iconClasses: ''})}}
                         <div class="d-flex flex-column flex-grow-1 align-items-end gap-2">
-                            <textarea class="form-control" type="text" placeholder="Please type your post here..."></textarea>
+                            <textarea class="form-control post-input" type="text" placeholder="Please type your post here...">{% if editPost is defined %}{{post.content}}{% endif %}</textarea>
                             <button class="btn btn-primary w-25">Post</button>
                         </div>
                     </form>
