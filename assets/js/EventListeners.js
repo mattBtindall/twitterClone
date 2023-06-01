@@ -1,3 +1,5 @@
+import Global from "./GlobalVariables"
+
 export class EventListeners {
     constructor(sharedElements, DomManipulator) {
         this.sharedElements = {
