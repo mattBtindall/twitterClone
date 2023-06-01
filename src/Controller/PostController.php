@@ -11,13 +11,14 @@ require_once '../public/Constants/Constants.php';
 
 class PostController extends AbstractController
 {
-    #[Route('/posts', name: 'app_posts')]
-    public function index(): Response
+    #[Route('/posts/{openPostInput?}', name: 'app_posts', defaults: ['openPostInput' => false])]
+    public function index($openPostInput): Response
     {
         return $this->render('post/posts.html.twig', [
             'pageTitle' => 'Home',
             'user' => USER,
-            'posts' => POSTS
+            'posts' => POSTS,
+            'openPostInput' => $openPostInput
         ]);
     }
 
@@ -51,6 +52,23 @@ class PostController extends AbstractController
             'user' => USER,
             'post' => $post,
             'editPost' => true
+        ]);
+    }
+
+    #[Route('/post/{id}/comment', name: 'app_post_comment')]
+    public function comment($id): Response
+    {
+        $post = array_values(array_filter(POSTS, function($value) use($id) {
+            if ($value['id'] == $id) {
+                return true;
+            }
+        }))[0];
+
+        return $this->render('post/comment.html.twig', [
+            'pageTitle' => 'Comment',
+            'user' => USER,
+            'post' => $post,
+            'comment' => true
         ]);
     }
 }

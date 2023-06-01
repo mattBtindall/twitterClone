@@ -36,6 +36,12 @@ export class EventListeners {
         const postContainerEl = document.querySelector('.post-container')
 
         postBtnEl.addEventListener('click', () => {
+            // if route is not app_posts redirect to app_posts
+            if (Global.getRoute() !== 'app_posts') {
+                window.location = Global.getPostsPath() + '/true'
+                return
+            }
+
             postContainerEl.classList.toggle('active')
             postBtnEl.innerText = postContainerEl.classList.contains('active') ? 'Hide Post' : 'Post'
             setTimeout(() => this.DomManipulator.setMainContainerHeight(), 310) // wait until the post container has animatied it's height
