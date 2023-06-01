@@ -19,3 +19,17 @@
 .post__icon:hover {
     color: inherit;
 }
+
+.post-show-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: $z-index-base;
+}
+
+.post__icon,
+.post__profile-link {
+    z-index: $z-index-upper-base;
+}

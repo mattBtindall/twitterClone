@@ -1,8 +1,11 @@
-<div class="post border-bottom px-3 py-4 d-inline-block w-100 {{ classes|default('') }}">
+<div class="post border-bottom px-3 py-4 d-inline-block w-100 position-relative {{ classes|default('') }}">
+    <a href="{{ path('app_post_show', {id: post.id}) }}" class="post-show-link"></a>
     <header class="post__header d-flex align-items-end gap-2 flex-wrap">
-        <h3 class="post__author h4 m-0">{{ post.user.name }}</h3>
-        <span class="post__email text-muted lh-sm">{{ post.user.email }}</span>
-        <span class="post__date text-muted lh-sm">{{ post.created|date('Y-m-d') }}</span>
+        <a href="" class="post__profile-link d-flex align-items-end gap-2">
+            <h3 class="post__author h4 m-0">{{ post.user.name }}</h3>
+            <span class="post__email text-muted">{{ post.user.email }}</span>
+        </a>
+        <span class="post__date text-muted">{{ post.created|date('Y-m-d') }}</span>
     </header>
     <div class="post__content py-3">
         {{ post.content }}
