@@ -13,6 +13,7 @@ export class EventListeners {
     setEventlisteners() {
         this.setSideBar()
         this.setPostSection()
+        this.setCopyToClipboard()
     }
 
     setSideBar() {
@@ -47,6 +48,17 @@ export class EventListeners {
             setTimeout(() => this.DomManipulator.setMainContainerHeight(), 310) // wait until the post container has animatied it's height
             this.toggleSidebar()
         })
+    }
+
+    setCopyToClipboard() {
+        const copyToClipboardEls = document.querySelectorAll('.copy-to-clipboard')
+
+        const copyToClipboard = (e) => {
+            e.preventDefault()
+            navigator.clipboard.writeText(e.currentTarget.dataset.url)
+        }
+
+        copyToClipboardEls.forEach(el => el.addEventListener('click', copyToClipboard))
     }
 
     toggleSidebar() {

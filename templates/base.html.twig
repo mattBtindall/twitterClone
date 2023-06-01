@@ -28,7 +28,7 @@
                         {% block breadcrumbs %}{% endblock %}
                     </div>
                     {# Post/comment/editPost input #}
-                    <form class="post-container d-flex gap-2 align-items-start {% if editPost is defined or comment is defined or openPostInput %}active{% endif %}">
+                    <form class="post-container d-flex gap-2 align-items-start {% if editPost is defined or comment is defined or (openPostInput is defined and openPostInput == 'true')  %}active{% endif %}">
                         {{ include('shared/_avatar.html.twig', { iconClasses: ''})}}
                         <div class="d-flex flex-column flex-grow-1 align-items-end gap-2">
                             <textarea

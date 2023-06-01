@@ -19,7 +19,7 @@
             {{include('shared/_icon.html.twig', {name: 'hand-thumbs-up', size: 24})}}
             <span class="ms-1 lh-sm align-self-center">{{ post.likedBy|length }}</span>
         </a>
-        <a href="" class="post__icon">
+        <a href="" class="post__icon copy-to-clipboard" data-url="{{ app.request.getSchemeAndHttpHost() ~ path('app_post_show', {id: post.id}) }}">
             {{include('shared/_icon.html.twig', {name: 'share', size: 24})}}
         </a>
     </footer>
