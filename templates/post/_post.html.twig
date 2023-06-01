@@ -8,11 +8,19 @@
         {{ post.content }}
     </div>
     <footer class="post__footer d-flex justify-content-between">
-        {{include('shared/_icon.html.twig', {name: 'chat-left', size: 24, classes: 'post__icon'})}}
-        <a href="{{ path('app_post_edit', {id: post.id, post: post})}}">
-            {{include('shared/_icon.html.twig', {name: 'pencil-square', size: 24, classes: 'post__icon'})}}
+        <a href="{{ path('app_post_comment', {id: post.id}) }}" class="post__icon">
+            {{include('shared/_icon.html.twig', {name: 'chat-left', size: 24})}}
+            <span class="ms-1">{{ post.comments|length }}</span>
         </a>
-        {{include('shared/_icon.html.twig', {name: 'hand-thumbs-up', size: 24, classes: 'post__icon'})}}
-        {{include('shared/_icon.html.twig', {name: 'share', size: 24, classes: 'post__icon'})}}
+        <a href="{{ path('app_post_edit', {id: post.id, post: post})}}" class="post__icon">
+            {{include('shared/_icon.html.twig', {name: 'pencil-square', size: 24})}}
+        </a>
+        <a href="" class="d-flex post__icon">
+            {{include('shared/_icon.html.twig', {name: 'hand-thumbs-up', size: 24})}}
+            <span class="ms-1 lh-sm align-self-center">{{ post.likedBy|length }}</span>
+        </a>
+        <a href="" class="post__icon">
+            {{include('shared/_icon.html.twig', {name: 'share', size: 24})}}
+        </a>
     </footer>
 </div>

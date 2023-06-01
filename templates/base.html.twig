@@ -9,27 +9,38 @@
     </head>
     <body>
         <div class="body-overlay"></div>
+        <input type="hidden" id="route" value="{{ app.request.attributes.get('_route') }}" />
+        <input type="hidden" id="posts_path" value="{{ app.request.getSchemeAndHttpHost() ~ path('app_posts') }}" />
 
         {{ include('shared/_avatar.html.twig', { iconClasses: 'sidebar-icon position-fixed ms-3 mt-1'})}}
         <section class="page overflow-hidden position-relative d-block d-md-flex">
             <aside class="sidebar">{{ include('_sidebar.html.twig') }}</aside>
             <div class="main">
+
                 <header class="main-header">
+                    {# Main title #}
                     <div class="main-title-container px-3">
                         <h1 class="py-1">{{ pageTitle }}</h1>
                     </div>
+                    {# Breadcrumbs #}
                     <div class="breadcrumbs text-muted px-3 py-1 border-bottom border-end">
                         <a href="{{ path('app_posts') }}">Home</a>
                         {% block breadcrumbs %}{% endblock %}
                     </div>
-                    <form class="post-container d-flex gap-2 align-items-start {% if editPost is defined %}active{% endif %}">
+                    {# Post/comment/editPost input #}
+                    <form class="post-container d-flex gap-2 align-items-start {% if editPost is defined or comment is defined or openPostInput %}active{% endif %}">
                         {{ include('shared/_avatar.html.twig', { iconClasses: ''})}}
                         <div class="d-flex flex-column flex-grow-1 align-items-end gap-2">
-                            <textarea class="form-control post-input" type="text" placeholder="Please type your post here...">{% if editPost is defined %}{{post.content}}{% endif %}</textarea>
-                            <button class="btn btn-primary w-25">Post</button>
+                            <textarea
+                                class="form-control post-input"
+                                type="text"
+                                placeholder="Please type your {% if comment is defined %}comment{% else %}post{% endif %} here...">{% if editPost is defined %}{{post.content}}{% endif %}</textarea>
+                            <button class="btn btn-primary w-25">{% if comment is defined %}Comment{% else %}Post{% endif %}</button>
                         </div>
                     </form>
                 </header>
+
+                {# Main section #}
                 <div class="main-content-container d-flex flex-column">
                     <section class="main-content px-md-3 ">
                         {% block content %}{% endblock %}

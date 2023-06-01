@@ -28,7 +28,7 @@
                     <input type="text" class="search-input rounded ps-2" placeholder="Search">
                 </div>
             </nav>
-            <a href="#" class="post-btn btn btn-primary w-100">Post</a>
+            <a href="#" class="post-btn btn btn-primary w-100">{% if openPostInput is defined and openPostInput == 'true' %}Hide Post{% else %}Post{% endif %}</a>
         </div>
     {% else %}
         <div class="d-flex justify-content-center flex-column gap-2">
