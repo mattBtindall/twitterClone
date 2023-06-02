@@ -3,7 +3,7 @@
 {% block title %} {{ pageTitle }} {% endblock %}
 
 {% block breadcrumbs %}
-    → {{ pageTitle }}
+    → <a href="{{ path('app_post_show', {id: post.id}) }}">Post</a> → {{ pageTitle }}
 {% endblock %}
 
 {% block content %}
