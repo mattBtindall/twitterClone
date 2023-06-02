@@ -14,6 +14,7 @@ export class EventListeners {
         this.setSideBar()
         this.setPostSection()
         this.setCopyToClipboard()
+        this.setPopoverMessage()
     }
 
     setSideBar() {
@@ -56,6 +57,7 @@ export class EventListeners {
         const copyToClipboard = (e) => {
             e.preventDefault()
             navigator.clipboard.writeText(e.currentTarget.dataset.url)
+            this.DomManipulator.popoverFlashMessage('Copied post link to clipboard', 'bg-success')
         }
 
         copyToClipboardEls.forEach(el => el.addEventListener('click', copyToClipboard))
@@ -64,5 +66,13 @@ export class EventListeners {
     toggleSidebar() {
         this.sharedElements.sidebarEl.classList.toggle('active')
         document.body.classList.toggle('active')
+    }
+
+    setPopoverMessage() {
+        const popoverCrossEl = document.querySelector('.flash-popover__cross')
+
+        popoverCrossEl.addEventListener('click', () => {
+            this.DomManipulator.hidePopoverFlashMessage()
+        })
     }
 }

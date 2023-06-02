@@ -15,7 +15,8 @@
         {{ include('shared/_avatar.html.twig', { iconClasses: 'sidebar-icon position-fixed ms-3 mt-1'})}}
         <section class="page overflow-hidden position-relative d-block d-md-flex">
             <aside class="sidebar">{{ include('_sidebar.html.twig') }}</aside>
-            <div class="main">
+            <div class="main position-relative">
+                {{ include('shared/_frontend-flash-popover.html.twig')}}
 
                 <header class="main-header">
                     {# Main title #}

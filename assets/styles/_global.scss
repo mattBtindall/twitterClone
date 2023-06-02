@@ -58,6 +58,18 @@ body.active .body-overlay {
     }
 }
 
+.flash-popover {
+    opacity: .925;
+    z-index: $z-index-top;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
 .post-container {
     transition: max-height .3s ease-in-out, padding .3s ease-in-out;
     max-height: 0;
