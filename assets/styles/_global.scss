@@ -62,11 +62,11 @@ body.active .body-overlay {
     opacity: .925;
     z-index: $z-index-top;
     left: 50%;
-    transform: translateX(-50%);
-    display: none;
+    transform: translate(-50%, -500%);
+    transition: all .5s ease-in-out;
 
     &.active {
-        display: block;
+        transform: translate(-50%, 0);
     }
 }
 
