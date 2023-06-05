@@ -8,4 +8,5 @@
 
 {% block content %}
     {{ include('profile/_profile-header.html.twig')}}
+    {{ include('post/_posts-list.html.twig', { posts: user.posts}) }}
 {% endblock %}
