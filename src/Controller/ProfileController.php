@@ -27,7 +27,29 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/profile.html.twig', [
             'pageTitle' => $user['name'],
-            'user' => $user
+            'user' => $user,
+            'activeTab' => 'posts'
+        ]);
+    }
+
+    #[Route('/profile/{id?}/likes', name: 'app_profile_likes', defaults: ['id' => null])]
+    public function likes($id): Response
+    {
+        if ($id === null) {
+            $user = USER;
+        } else {
+            $filteredUser = array_values(array_filter(USERS, function($user) use($id) {
+                if ($user['id'] == $id) {
+                    return true;
+                }
+            }));
+            $user = $filteredUser[0];
+        }
+
+        return $this->render('profile/likes.html.twig', [
+            'pageTitle' => $user['name'],
+            'user' => $user,
+            'activeTab' => 'likes'
         ]);
     }
 }
