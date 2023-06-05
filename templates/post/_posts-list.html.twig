@@ -1,7 +1,7 @@
 {% if posts is not defined %}
     <h3>nothing to show here</h3>
 {% else %}
-    <div class="post__list d-flex flex-column">
+    <div class="post__list d-flex flex-column px-md-3">
         {% for post in posts %}
             {{include('post/_post.html.twig', {post: post})}}
         {% endfor %}
