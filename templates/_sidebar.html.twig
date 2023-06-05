@@ -3,7 +3,7 @@
         {{ include('shared/_profile-summary.html.twig') }}
         <div>
             <nav class="mb-4 d-flex flex-column gap-3">
-                <a href="{{ path('app_profile', {id: user.id}) }}" class="d-flex align-items-center gap-3 fw-bold">
+                <a href="{{ path('app_profile_posts', {id: user.id}) }}" class="d-flex align-items-center gap-3 fw-bold">
                     {{include('shared/_icon.html.twig', {name: 'person-circle', size: 32})}} <span>Profile</span>
                 </a>
                 <a href="{{ path('app_posts') }}" class="d-flex align-items-center gap-3 fw-bold">

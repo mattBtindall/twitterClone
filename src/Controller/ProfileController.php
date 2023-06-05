@@ -11,7 +11,7 @@ require_once '../public/Constants/Constants.php';
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile/{id?}', name: 'app_profile', defaults: ['id' => null])]
+    #[Route('/profile/{id?}', name: 'app_profile_posts', defaults: ['id' => null])]
     public function index($id): Response
     {
         if ($id === null) {

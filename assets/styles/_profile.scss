@@ -1,0 +1,18 @@
+.profile__tabs {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    margin: 0;
+
+    li {
+        flex-grow: 1;
+        text-align: center;
+        cursor: pointer;
+
+        &.active {
+            color: $primary;
+            border-bottom: 2px solid $primary;
+        }
+    }
+}

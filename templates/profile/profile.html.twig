@@ -7,6 +7,6 @@
 {% endblock %}
 
 {% block content %}
-    {{ include('profile/_profile-header.html.twig')}}
+    {{ include('profile/_profile-header.html.twig', {activeTab: 'posts'})}}
     {{ include('post/_posts-list.html.twig', { posts: user.posts}) }}
 {% endblock %}

@@ -1,11 +1,11 @@
-<header class="p-3 border-bottom">
+<header class="p-3 pb-0 border-bottom">
     <div class="d-flex justify-content-between align-items-end mb-3">
         <img src="{{ asset(profiles ~ user.avatar) }}" alt="dogs" style="width: 128px;" class="mt-1 rounded-circle bg-dark p-2">
          {# Change to to say 'follow' or 'edit profile' #}
         <button class="btn btn-outline-primary">Test btn</button>
     </div>
     {{ include('shared/_profile-summary.html.twig') }}
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column mb-3">
         {% if user.bio %}
             <p>{{ user.bio }}</p>
         {% endif %}
@@ -34,4 +34,10 @@
             </div>
         </div>
     </div>
+    <ul class="profile__tabs">
+        <li class="{{ activeTab == 'posts' ? 'active'}}"><a href="{{ path('app_profile_posts', { id: user.id })}}">Posts</a></li>
+        <li class="{{ activeTab == 'likes' ? 'active'}}">Likes</li>
+        <li class="{{ activeTab == 'following' ? 'active'}}">Following</li>
+        <li class="{{ activeTab == 'followers' ? 'active'}}">Followers</li>
+    </ul>
 </header>
