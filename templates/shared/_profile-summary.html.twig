@@ -1,0 +1,12 @@
+<div class="mb-4 d-flex flex-column gap-1">
+    <div class="fw-bold">{{ user.name }}</div>
+    <div class="text-muted">{{ user.email }}</div>
+    <div class="d-flex gap-2">
+        <a href="#">
+            <span class="fw-bold">{{ user.following|length }}</span> <span class="text-muted">following</span>
+        </a>
+        <a href="#">
+            <span class="fw-bold">{{ user.followers|length }}</span> <span class="text-muted">followers</span>
+        </a>
+    </div>
+</div>

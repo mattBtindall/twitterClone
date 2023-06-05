@@ -1,18 +1,7 @@
 <div class="pt-4 p-3 mt-5 ">
     {% if user is defined %}
+        {{ include('shared/_profile-summary.html.twig') }}
         <div>
-            <div class="mb-4 d-flex flex-column gap-1">
-                <div class="fw-bold">{{ user.name }}</div>
-                <div class="text-muted">{{ user.email }}</div>
-                <div class="d-flex gap-2">
-                    <a href="#">
-                        <span class="fw-bold">{{ user.following|length }}</span> <span class="text-muted">following</span>
-                    </a>
-                    <a href="#">
-                        <span class="fw-bold">{{ user.followers|length }}</span> <span class="text-muted">followers</span>
-                    </a>
-                </div>
-            </div>
             <nav class="mb-4 d-flex flex-column gap-3">
                 <a href="{{ path('app_profile', {id: user.id}) }}" class="d-flex align-items-center gap-3 fw-bold">
                     {{include('shared/_icon.html.twig', {name: 'person-circle', size: 32})}} <span>Profile</span>
