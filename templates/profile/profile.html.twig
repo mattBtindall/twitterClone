@@ -1,12 +1,5 @@
-{% extends 'base.html.twig' %}
+{% extends 'profile/_profile-base.html.twig' %}
 
-{% block title %} {{ pageTitle }} {% endblock %}
-
-{% block breadcrumbs %}
-    → {{ pageTitle }}
-{% endblock %}
-
-{% block content %}
-    {{ include('profile/_profile-header.html.twig', {activeTab: 'posts'})}}
+{% block tabContent %}
     {{ include('post/_posts-list.html.twig', { posts: user.posts}) }}
 {% endblock %}

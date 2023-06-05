@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ pageTitle }} {% endblock %}
+
+{% block breadcrumbs %}
+    → {{ pageTitle }}
+{% endblock %}
+
+{% block content %}
+    {{ include('profile/_profile-header.html.twig', {activeTab: activeTab})}}
+    {% block tabContent %}{% endblock %}
+{% endblock %}
