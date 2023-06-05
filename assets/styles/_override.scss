@@ -5,3 +5,9 @@
     color: white;
     font-weight: bold;
 }
+
+.btn-outline-primary {
+    &:hover {
+        color: white;
+    }
+}
