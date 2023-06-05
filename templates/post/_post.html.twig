@@ -1,8 +1,8 @@
 <div class="post border-bottom px-3 py-4 d-inline-block w-100 position-relative {{ classes|default('') }}">
     <a href="{{ path('app_post_show', {id: post.id}) }}" class="post-show-link {% if hidePostLink is defined %}d-none{% endif %}"></a>
-    <header class="post__header d-flex align-items-end gap-2 flex-wrap">
+    <header class="post__header d-flex align-items-end gap-2 flex-wrap lh-sm">
         <a href="{{ path('app_profile', {id: post.user.id}) }}" class="post__profile-link d-flex align-items-end gap-2">
-            <h3 class="post__author h4 m-0">{{ post.user.name }}</h3>
+            <h3 class="post__author h5 m-0">{{ post.user.name }}</h3>
             <span class="post__email text-muted">{{ post.user.email }}</span>
         </a>
         <span class="post__date text-muted">{{ post.created|date('Y-m-d') }}</span>
