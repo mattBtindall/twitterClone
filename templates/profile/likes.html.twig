@@ -1,5 +1,5 @@
 {% extends 'profile/_profile-base.html.twig' %}
 
 {% block tabContent %}
-    {{ include('post/_posts-list.html.twig', { posts: user.likes}) }}
+    {{ include('post/_posts-list.html.twig', { posts: user.likes, emptyListTitle: 'No liked posts'}) }}
 {% endblock %}

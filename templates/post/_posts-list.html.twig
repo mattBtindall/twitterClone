@@ -1,9 +1,12 @@
-{% if posts is not defined %}
-    <h3>nothing to show here</h3>
-{% else %}
-    <div class="post__list d-flex flex-column px-md-3">
+<div class="post__list d-flex flex-column px-md-3">
+    {% if posts is not defined or posts|length == 0%}
+        <div class="border-bottom px-3 py-4 text-center">
+            <p class="h5">{{ emptyListTitle|default('No posts') }}</p>
+            <p class="text-muted">{{ emptyListMeesage|default('Come back some other time') }}</p>
+        </div>
+    {% else %}
         {% for post in posts %}
             {{include('post/_post.html.twig', {post: post})}}
         {% endfor %}
-    </div>
-{% endif %}
+    {% endif %}
+</div>
