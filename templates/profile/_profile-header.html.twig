@@ -9,7 +9,7 @@
         {% if user.bio %}
             <p>{{ user.bio }}</p>
         {% endif %}
-        <div class="d-flex gap-3 flex-wrap">
+        <div class="d-flex gap-2 flex-wrap">
             {% if user.websiteUrl %}
                 <div>
                     {{include('shared/_icon.html.twig', {name: 'link-45deg', size: 16})}}

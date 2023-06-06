@@ -2,7 +2,7 @@
     list-style-type: none;
     display: flex;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0;
     margin: 0;
 
     li {
@@ -14,5 +14,9 @@
             color: $primary;
             border-bottom: 2px solid $primary;
         }
+    }
+
+    @include media-breakpoint-up(md) {
+        padding: 0 2rem;
     }
 }
