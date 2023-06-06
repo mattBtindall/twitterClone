@@ -82,7 +82,42 @@ const USERS = [
         'id' => 0,
         'name' => 'Don Norman',
         'email' => 'donnorman@gmail.com',
-        'following' => ['test1', 'test2', 'test3'],
+        'following' => [
+            [
+                'id' => 1,
+                'name' => 'Paul Dingle',
+                'email' => 'pauldingleberries@gmail.com',
+                'following' => ['test1'],
+                'followers' => ['test1', 'test2'],
+                'avatar' => 'default.png',
+                'posts' => [POSTS[1]],
+                'likes' => [POSTS[0]],
+                'bio' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero debitis placeat quisquam impedit exercitationem eligendi ipsum ipsam molestiae quos molestias.',
+                'location' => [
+                    'townCity' => 'Huddersfield',
+                    'country' => 'United Kingdom'
+                ],
+                'createdAt' => new DateTime(),
+                'websiteUrl' => 'getbootstrap.com'
+            ],
+            [
+                'id' => 2,
+                'name' => 'Matt Tindall',
+                'email' => 'mattbtindall@gmail.com',
+                'following' => ['test1'],
+                'followers' => ['test1', 'test2'],
+                'avatar' => 'default.png',
+                'posts' => [POSTS[2]],
+                'likes' => [],
+                'bio' => 'Lorem ipsum dolor sit, amet consectetur adipisicing.',
+                'location' => [
+                    'townCity' => 'Florida',
+                    'country' => 'USA'
+                ],
+                'createdAt' => new DateTime(),
+                'websiteUrl' => 'facebook.com'
+            ]
+        ],
         'followers' => ['test1', 'test2', 'test3', 'test4', 'test5'],
         'avatar' => 'default.png',
         'posts' => [POSTS[0]],
@@ -99,8 +134,8 @@ const USERS = [
         'id' => 1,
         'name' => 'Paul Dingle',
         'email' => 'pauldingleberries@gmail.com',
-        'following' => ['test1'],
-        'followers' => ['test1', 'test2'],
+        'following' => [],
+        'followers' => [],
         'avatar' => 'default.png',
         'posts' => [POSTS[1]],
         'likes' => [POSTS[0]],
@@ -110,14 +145,14 @@ const USERS = [
             'country' => 'United Kingdom'
         ],
         'createdAt' => new DateTime(),
-        'websiteUrl' => 'getbootstrap.com.com'
+        'websiteUrl' => 'getbootstrap.com'
     ],
     [
         'id' => 2,
         'name' => 'Matt Tindall',
         'email' => 'mattbtindall@gmail.com',
-        'following' => ['test1'],
-        'followers' => ['test1', 'test2'],
+        'following' => [],
+        'followers' => [],
         'avatar' => 'default.png',
         'posts' => [POSTS[2]],
         'likes' => [],
@@ -131,4 +166,4 @@ const USERS = [
     ]
 ];
 
-const USER = USERS[1];
+const USER = USERS[0];

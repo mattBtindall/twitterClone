@@ -1,0 +1,12 @@
+<div class="d-flex flex-column px-md-3">
+    {% if users is not defined or users|length == 0 %}
+        <div class="border-bottom px-3 py-4 text-center">
+            <p class="h5">{{ emptyListTitle|default('No users') }}</p>
+            <p class="text-muted">{{ emptyListMeesage|default('Come back some other time') }}</p>
+        </div>
+    {% else %}
+        {% for user in users %}
+            {{include('profile/_user.html.twig', {user: user})}}
+        {% endfor %}
+    {% endif %}
+</div>
