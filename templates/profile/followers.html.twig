@@ -1,0 +1,5 @@
+{% extends 'profile/_profile-base.html.twig' %}
+
+{% block tabContent %}
+    {{ include('profile/_users-list.html.twig', { users: user.followers, emptyListTitle: 'No users to display here'}) }}
+{% endblock %}

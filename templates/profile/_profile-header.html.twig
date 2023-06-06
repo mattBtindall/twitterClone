@@ -38,6 +38,6 @@
         <li class="{{ activeTab == 'posts' ? 'active'}}"><a href="{{ path('app_profile_posts', { id: user.id })}}">Posts</a></li>
         <li class="{{ activeTab == 'likes' ? 'active'}}"><a href="{{ path('app_profile_likes', { id: user.id })}}">Likes</a></li>
         <li class="{{ activeTab == 'following' ? 'active'}}"><a href="{{ path('app_profile_following', { id: user.id })}}">Following</a></li>
-        <li class="{{ activeTab == 'followers' ? 'active'}}">Followers</li>
+        <li class="{{ activeTab == 'followers' ? 'active'}}"><a href="{{ path('app_profile_followers', { id: user.id })}}">Followers</a></li>
     </ul>
 </header>

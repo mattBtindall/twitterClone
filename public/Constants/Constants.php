@@ -118,7 +118,77 @@ const USERS = [
                 'websiteUrl' => 'facebook.com'
             ]
         ],
-        'followers' => ['test1', 'test2', 'test3', 'test4', 'test5'],
+        'followers' => [
+
+            [
+                'id' => 1,
+                'name' => 'Paul Dingle',
+                'email' => 'pauldingleberries@gmail.com',
+                'following' => ['test1'],
+                'followers' => ['test1', 'test2'],
+                'avatar' => 'default.png',
+                'posts' => [POSTS[1]],
+                'likes' => [POSTS[0]],
+                'bio' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero debitis placeat quisquam impedit exercitationem eligendi ipsum ipsam molestiae quos molestias.',
+                'location' => [
+                    'townCity' => 'Huddersfield',
+                    'country' => 'United Kingdom'
+                ],
+                'createdAt' => new DateTime(),
+                'websiteUrl' => 'getbootstrap.com'
+            ],
+            [
+                'id' => 1,
+                'name' => 'Paul Dingle',
+                'email' => 'pauldingleberries@gmail.com',
+                'following' => ['test1'],
+                'followers' => ['test1', 'test2'],
+                'avatar' => 'default.png',
+                'posts' => [POSTS[1]],
+                'likes' => [POSTS[0]],
+                'bio' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero debitis placeat quisquam impedit exercitationem eligendi ipsum ipsam molestiae quos molestias.',
+                'location' => [
+                    'townCity' => 'Huddersfield',
+                    'country' => 'United Kingdom'
+                ],
+                'createdAt' => new DateTime(),
+                'websiteUrl' => 'getbootstrap.com'
+            ],
+            [
+                'id' => 1,
+                'name' => 'Paul Dingle',
+                'email' => 'pauldingleberries@gmail.com',
+                'following' => ['test1'],
+                'followers' => ['test1', 'test2'],
+                'avatar' => 'default.png',
+                'posts' => [POSTS[1]],
+                'likes' => [POSTS[0]],
+                'bio' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero debitis placeat quisquam impedit exercitationem eligendi ipsum ipsam molestiae quos molestias.',
+                'location' => [
+                    'townCity' => 'Huddersfield',
+                    'country' => 'United Kingdom'
+                ],
+                'createdAt' => new DateTime(),
+                'websiteUrl' => 'getbootstrap.com'
+            ],
+            [
+                'id' => 1,
+                'name' => 'Paul Dingle',
+                'email' => 'pauldingleberries@gmail.com',
+                'following' => ['test1'],
+                'followers' => ['test1', 'test2'],
+                'avatar' => 'default.png',
+                'posts' => [POSTS[1]],
+                'likes' => [POSTS[0]],
+                'bio' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero debitis placeat quisquam impedit exercitationem eligendi ipsum ipsam molestiae quos molestias.',
+                'location' => [
+                    'townCity' => 'Huddersfield',
+                    'country' => 'United Kingdom'
+                ],
+                'createdAt' => new DateTime(),
+                'websiteUrl' => 'getbootstrap.com'
+            ],
+        ],
         'avatar' => 'default.png',
         'posts' => [POSTS[0]],
         'likes' => [],

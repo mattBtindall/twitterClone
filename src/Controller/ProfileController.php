@@ -73,4 +73,26 @@ class ProfileController extends AbstractController
             'activeTab' => 'following'
         ]);
     }
+
+    #[Route('/profile/{id?}/followers', name: 'app_profile_followers', defaults: ['id' => null])]
+    public function followers($id): Response
+    {
+        if ($id === null) {
+            $user = USER;
+        } else {
+            $filteredUser = array_values(array_filter(USERS, function($user) use($id) {
+                if ($user['id'] == $id) {
+                    return true;
+                }
+            }));
+            $user = $filteredUser[0];
+        }
+
+        return $this->render('profile/followers.html.twig', [
+            'pageTitle' => $user['name'],
+            'user' => $user,
+            'activeTab' => 'followers'
+        ]);
+    }
+
 }
