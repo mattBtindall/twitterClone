@@ -9,5 +9,6 @@
 {% block content %}
     <div class="px-md-3">
         {{ include('post/_post.html.twig', {hidePostLink: true}) }}
+        {{ include('post/_comments.html.twig', {comments: post.comments}) }}
     </div>
 {% endblock %}

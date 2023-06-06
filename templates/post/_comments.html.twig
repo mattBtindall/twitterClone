@@ -1,0 +1,3 @@
+{% for comment in comments %}
+    {{include('post/_comment.html.twig', {comment: comment})}}
+{% endfor %}

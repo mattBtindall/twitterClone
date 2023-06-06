@@ -6,6 +6,7 @@ const POSTS = [
             'id' => 0,
             'name' => 'Don Norman',
             'email' => 'donnorman@gmail.com',
+            'avatar' => 'default.png'
         ],
         'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore deserunt nihil rem, dolores commodi, fugit unde distinctio minima inventore id temporibus repellendus magni culpa debitis natus laboriosam reprehenderit. Veniam, facere?',
         'created' => new DateTime(),
@@ -15,11 +16,13 @@ const POSTS = [
         'comments' => [
             [
                 'content' => 'This is just a random comment',
-                'user' => ['name' => 'Paul Dingle','email' => 'pauldingleberries@gmail.com']
+                'user' => ['name' => 'Paul Dingle','email' => 'pauldingleberries@gmail.com', 'avatar' => 'default.png', 'id' => 1],
+                'created' => new DateTime()
             ],
             [
-                'content' => 'This is just another random comment',
-                'user' => ['name' => 'Matt Tindall','email' => 'mattbtindall@gmail.com']
+                'content' => 'This is just another random arse comment',
+                'user' => ['name' => 'Matt Tindall','email' => 'mattbtindall@gmail.com', 'avatar' => 'default.png', 'id' => 2],
+                'created' => new DateTime()
             ],
         ]
     ],
@@ -29,16 +32,12 @@ const POSTS = [
             'id' => 1,
             'name' => 'Paul Dingle',
             'email' => 'pauldingleberries@gmail.com',
+            'avatar' => 'default.png'
         ],
         'content' => 'this is just a small post',
         'created' => new DateTime(),
         'likedBy' => [],
-        'comments' => [
-            [
-                'content' => 'This is just a random comment',
-                'user' => ['name' => 'Paul Dingle','email' => 'pauldingleberries@gmail.com']
-            ]
-        ]
+        'comments' => []
     ],
     [
         'id' => 2,
@@ -46,6 +45,7 @@ const POSTS = [
             'id' => 2,
             'name' => 'Matt Tindall',
             'email' => 'mattbtindall@gmail.com',
+            'avatar' => 'default.png'
         ],
         'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore deserunt nihil rem, dolores commodi, fugit unde distinctio minima inventore id temporibus repellendus magni culpa debitis natus laboriosam reprehenderit. Veniam, facere?',
         'created' => new DateTime(),
@@ -58,22 +58,14 @@ const POSTS = [
             'id' => 0,
             'name' => 'Don Norman',
             'email' => 'donnorman@gmail.com',
+            'avatar' => 'default.png'
         ],
         'content' => 'Some test post, lorem boop blap bleep',
         'created' => new DateTime(),
         'likedBy' => [
             ['name' => 'Paul Dingle', 'email' => 'pauldingleberries@gmail.com']
         ],
-        'comments' => [
-            [
-                'content' => 'This is just a random comment',
-                'user' => ['name' => 'Paul Dingle','email' => 'pauldingleberries@gmail.com']
-            ],
-            [
-                'content' => 'This is just another random comment',
-                'user' => ['name' => 'Matt Tindall','email' => 'mattbtindall@gmail.com']
-            ],
-        ]
+        'comments' => []
     ],
 ];
 
@@ -119,7 +111,6 @@ const USERS = [
             ]
         ],
         'followers' => [
-
             [
                 'id' => 1,
                 'name' => 'Paul Dingle',
