@@ -14,7 +14,8 @@
                 <div>
                     {{include('shared/_icon.html.twig', {name: 'link-45deg', size: 16})}}
                     <a href="{% if 'http' not in user.websiteUrl and 'https' not in user.websiteUrl %}http://{% endif %}{{ user.websiteUrl }}"
-                       class="text-primary">{{ user.websiteUrl }}</a>
+                       class="text-primary"
+                       target="_blank">{{ user.websiteUrl }}</a>
                 </div>
             {% endif %}
             {% if user.location.townCity or user.location.country %}

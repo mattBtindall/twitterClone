@@ -2,6 +2,7 @@
     <a href="{{ path('app_post_show', {id: post.id}) }}" class="post-show-link {% if hidePostLink is defined %}d-none{% endif %}"></a>
     <header class="post__header d-flex align-items-end gap-2 flex-wrap lh-sm">
         <a href="{{ path('app_profile_posts', {id: post.user.id}) }}" class="post__profile-link d-flex align-items-end gap-2">
+            <img src="{{ asset(profiles ~ user.avatar) }}" alt="dogs" style="width: 32px;" class="rounded-circle bg-dark p-2">
             <h3 class="post__author h5 m-0">{{ post.user.name }}</h3>
             <span class="post__email text-muted">{{ post.user.email }}</span>
         </a>
