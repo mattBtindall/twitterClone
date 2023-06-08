@@ -22,7 +22,7 @@
     {% else %}
         <div class="d-flex justify-content-center flex-column gap-2">
             <p class="text-center">You're not signed in, please select one of the buttons below</p>
-            <a href="#" class="btn btn-primary">Login In</a>
+            <a href="{{ path('app_login') }}" class="btn btn-primary">Login In</a>
             <a href="{{ path('app_register') }}" class="btn btn-primary">Sign Up</a>
         </div>
     {% endif %}
