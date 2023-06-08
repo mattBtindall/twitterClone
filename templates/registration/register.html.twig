@@ -5,40 +5,19 @@
 {% endblock %}
 
 {% block content %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-
-    {{ form_start(registrationForm, {'attr': {'class': 'px-3 py-4'}}) }}
-        {# {{ form_row(registrationForm.email) }} #}
+    {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
+    {{ form_start(registrationForm, {'attr': {class: 'px-3 py-4 border-bottom'}}) }}
+        <div class="row">
+            {{ form_row(registrationForm.email, {'attr': {class: 'form-control-lg mb-2' }, 'row_attr': {class: 'col-lg-6'}}) }}
+        </div>
+        <div class="row">
+            {{ form_row(registrationForm.plainPassword.first, {'attr': {class: 'form-control-lg mb-2'}, 'row_attr': {class: 'col-lg-6'}}) }}
+            {{ form_row(registrationForm.plainPassword.second, {'attr': {class: 'form-control-lg mb-2'}, 'row_attr': {class: 'col-lg-6'}}) }}
+        </div>
+        {{ form_row(registrationForm.agreeTerms) }}
         <div class="row">
             <div class="col-lg-6">
-                <div class="form-group">
-                    {{ form_label(registrationForm.email, 'Please enter your username (email)', {'label_attr': {'class': 'mb-1'}}) }}
-                    {{ form_widget(registrationForm.email, {'attr': {'class': form_errors(registrationForm.email) ? 'is-invalid form-control form-control-lg' : 'form-control form-control-lg'}}) }}
-                    {{ form_errors(registrationForm.email, {'attr': {'class': 'invalid-feedback'}}) }}
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="form-group">
-                    {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'mb-1'}}) }}
-                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control form-control-lg'}}) }}
-                    {{ form_errors(registrationForm.plainPassword, {'attr': {'class': 'invalid-feedback'}}) }}
-                </div>
-            </div>
-        </div>
-
-        <div class="d-flex-align-items-center my-2">
-            {{ form_label(registrationForm.agreeTerms, 'Agree to terms', {'label_attr': {'class': 'fw-light'}}) }}
-            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'ms-1'}}) }}
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <button type="submit" class="btn btn-primary w-100">Register</button>
+                <input type="submit" class="btn btn-primary w-100" value="Register">
             </div>
         </div>
     {{ form_end(registrationForm) }}
