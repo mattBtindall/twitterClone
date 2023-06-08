@@ -15,7 +15,7 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     {{ form_label(registrationForm.email, 'Please enter your username (email)', {'label_attr': {'class': 'mb-1'}}) }}
-                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': form_errors(registrationForm.email) ? 'is-invalid form-control form-control-lg' : 'form-control form-control-lg'}}) }}
                     {{ form_errors(registrationForm.email, {'attr': {'class': 'invalid-feedback'}}) }}
                 </div>
             </div>
