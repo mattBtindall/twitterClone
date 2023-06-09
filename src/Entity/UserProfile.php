@@ -29,6 +29,9 @@ class UserProfile
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $websiteUrl = null;
 
+    #[ORM\OneToOne(mappedBy: 'Profile', cascade: ['persist', 'remove'])]
+    private ?User $User = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,23 @@ class UserProfile
     public function setWebsiteUrl(?string $websiteUrl): self
     {
         $this->websiteUrl = $websiteUrl;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(User $User): self
+    {
+        // set the owning side of the relation if necessary
+        if ($User->getProfile() !== $this) {
+            $User->setProfile($this);
+        }
+
+        $this->User = $User;
 
         return $this;
     }
