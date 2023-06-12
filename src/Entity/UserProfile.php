@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Repository\UserProfileRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,6 +35,11 @@ class UserProfile
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateOfBirth = null;
+
+    public function __construct()
+    {
+        $this->created = new DateTime();
+    }
 
     public function getId(): ?int
     {
