@@ -7,6 +7,13 @@
 {% block content %}
     {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
     {{ form_start(registrationForm, {'attr': {class: 'px-md-3 py-4 border-bottom'}}) }}
+        <h2 class="h5">
+            Basic Information
+        </h2>
+        <h3 class="text-muted fs-6 fw-normal border-bottom">
+            Your user credentials
+        </h3>
+
         <div class="row">
             {{ form_row(registrationForm.email, {'attr': {class: 'form-control-lg mb-2' }, 'row_attr': {class: 'col-lg-6'}}) }}
         </div>
@@ -15,6 +22,17 @@
             {{ form_row(registrationForm.plainPassword.second, {'attr': {class: 'form-control-lg mb-2'}, 'row_attr': {class: 'col-lg-6'}}) }}
         </div>
         {{ form_row(registrationForm.agreeTerms) }}
+
+        <div class="border-bottom my-3"></div>
+        <h2 class="h5">
+            Account information
+        </h2>
+        <h3 class="text-muted fs-6 fw-normal border-bottom">
+            This is extra information about yourself. You can change this at a later date.
+        </h3>
+
+        {{ include('settings_profile/_profile_form.html.twig', { form: registrationForm.profile }) }}
+
         <div class="row">
             <div class="col-lg-6">
                 <input type="submit" class="btn btn-primary w-100" value="Register">
