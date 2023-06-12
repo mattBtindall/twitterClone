@@ -44,6 +44,11 @@
                 {# Main section #}
                 <div class="main-content-container d-flex flex-column">
                     <section class="main-content">
+                        <div class="px-2 px-md-3">
+                            {% for message in app.flashes('success') %}
+                                <div class="bg-success text-light rounded mt-2 p-3">{{ message }}</div>
+                            {% endfor %}
+                        </div>
                         {% block content %}{% endblock %}
                     </section>
                     <footer class="py-3 text-center mt-auto">
