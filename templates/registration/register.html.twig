@@ -6,7 +6,7 @@
 
 {% block content %}
     {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
-    {{ form_start(registrationForm, {'attr': {class: 'px-3 py-4 border-bottom'}}) }}
+    {{ form_start(registrationForm, {'attr': {class: 'px-md-3 py-4 border-bottom'}}) }}
         <div class="row">
             {{ form_row(registrationForm.email, {'attr': {class: 'form-control-lg mb-2' }, 'row_attr': {class: 'col-lg-6'}}) }}
         </div>

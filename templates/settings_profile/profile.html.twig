@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ pageTitle }} {% endblock %}
+
+{% block breadcrumbs %}
+    {# → <a href="{{ path('app_post_show', {id: user.id}) }}">User</a> → {{ pageTitle }} #}
+    → {{ pageTitle }}
+{% endblock %}
+
+{% block content %}
+    {% form_theme form 'bootstrap_5_layout.html.twig' %}
+    {{ form_start(form, {'attr': {'class': 'px-2 px-md-3 py-4'}}) }}
+        {{ include('settings_profile/_profile_form.html.twig')}}
+        <div class="row">
+            <div class="col-lg-6">
+                <input type="submit" class="btn btn-primary w-100" value="Save">
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
