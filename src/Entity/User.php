@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -35,6 +37,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(inversedBy: 'User', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?UserProfile $Profile = null;
+
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'followers')]
+    #[ORM\JoinTable('followers')] // add this here to change the name of the table if not it would be User_user
+    private Collection $follows;
+
+    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'follows')]
+    private Collection $followers;
+
+    public function __construct()
+    {
+        $this->follows = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -126,6 +141,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfile(UserProfile $Profile): self
     {
         $this->Profile = $Profile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFollows(): Collection
+    {
+        return $this->follows;
+    }
+
+    public function follow(self $follow): self
+    {
+        if (!$this->follows->contains($follow)) {
+            $this->follows->add($follow);
+        }
+
+        return $this;
+    }
+
+    public function unFollow(self $follow): self
+    {
+        $this->follows->removeElement($follow);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(self $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers->add($follower);
+            $follower->follow($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(self $follower): self
+    {
+        if ($this->followers->removeElement($follower)) {
+            $follower->unFollow($this);
+        }
 
         return $this;
     }
