@@ -1,7 +1,7 @@
 <header class="post__header d-flex align-items-end gap-2 flex-wrap lh-sm">
     <a href="{{ path('app_profile_posts', {id: post.user.id}) }}" class="post__profile-link d-flex align-items-end gap-2">
-        <img src="{{ asset(profiles ~ post.user.avatar) }}" alt="dogs" style="width: 32px;" class="rounded-circle bg-dark p-2">
-        <h3 class="post__author h5 m-0">{{ post.user.name }}</h3>
+        <img src="{{ asset(profiles ~ post.user.profile.avatar) }}" alt="dogs" style="width: 32px;" class="rounded-circle bg-dark p-2">
+        <h3 class="post__author h5 m-0">{{ post.user.profile.name }}</h3>
         <span class="post__email text-muted">{{ post.user.email }}</span>
     </a>
     <span class="post__date text-muted">{{ post.created|date('Y-m-d') }}</span>
