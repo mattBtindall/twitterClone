@@ -21,4 +21,10 @@ class LoginController extends AbstractController
             'error' => $error
         ]);
     }
+
+    #[Route('/logout', name: 'app_logout')]
+    public function logout(): never
+    {
+        // can be left empty -> config/packages/security.yaml handles the route and the redirect
+    }
 }

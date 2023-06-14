@@ -19,6 +19,9 @@ security:
             form_login:
                 login_path: app_login # route that users get redirected to if they try access pages where they need to be authenticaed
                 check_path: app_login # route where the credentials will be sent to
+            logout:
+                path: app_logout
+                target: app_login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

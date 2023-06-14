@@ -16,6 +16,9 @@
                     {{include('shared/_icon.html.twig', {name: 'search', size: 32})}}
                     <input type="text" class="search-input rounded ps-2" placeholder="Search">
                 </div>
+                <a href="{{ path('app_logout') }}" class="d-flex align-items-center gap-3 fw-bold">
+                    {{include('shared/_icon.html.twig', {name: 'box-arrow-left', size: 32})}} <span>Logout</span>
+                </a>
             </nav>
             <a href="#" class="post-btn btn btn-primary w-100">{% if openPostInput is defined and openPostInput == 'true' %}Hide Post{% else %}Post{% endif %}</a>
         </div>
