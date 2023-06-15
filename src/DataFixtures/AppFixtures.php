@@ -35,6 +35,8 @@ class AppFixtures extends Fixture
         $user1Profile->setName('test');
         $user1Profile->setAvatar('default.png');
         $user1Profile->setDateOfBirth(new DateTime());
+        $user1Profile->setTownCityCounty('Yorkshire');
+        $user1Profile->setCountry('United Kingdom');
         $user1->setProfile($user1Profile);
         $manager->persist($user1);
 

@@ -36,6 +36,12 @@ class UserProfile
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateOfBirth = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $town_city_county = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $country = null;
+
     public function __construct()
     {
         $this->created = new DateTime();
@@ -131,6 +137,30 @@ class UserProfile
     public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
+
+        return $this;
+    }
+
+    public function getTownCityCounty(): ?string
+    {
+        return $this->town_city_county;
+    }
+
+    public function setTownCityCounty(?string $town_city_county): self
+    {
+        $this->town_city_county = $town_city_county;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
