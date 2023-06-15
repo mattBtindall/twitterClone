@@ -1,37 +1,37 @@
 <header class="p-3 pb-0 border-bottom">
     <div class="d-flex justify-content-between align-items-end mb-3">
-        <img src="{{ asset(profiles ~ user.avatar) }}" alt="dogs" style="width: 128px;" class="mt-1 rounded-circle bg-dark p-2">
+        <img src="{{ asset(profiles ~ user.profile.avatar) }}" alt="dogs" style="width: 128px;" class="mt-1 rounded-circle bg-dark p-2">
          {# Change to to say 'follow' or 'edit profile' #}
         <button class="btn btn-outline-primary">Test btn</button>
     </div>
-    {{ include('shared/_profile-summary.html.twig') }}
+    {{ include('shared/_profile-summary.html.twig', {user: user}) }}
     <div class="d-flex flex-column mb-3">
-        {% if user.bio %}
-            <p>{{ user.bio }}</p>
+        {% if user.profile.bio %}
+            <p>{{ user.profile.bio }}</p>
         {% endif %}
         <div class="d-flex gap-2 flex-wrap">
-            {% if user.websiteUrl %}
+            {% if user.profile.websiteUrl %}
                 <div>
                     {{include('shared/_icon.html.twig', {name: 'link-45deg', size: 16})}}
-                    <a href="{% if 'http' not in user.websiteUrl and 'https' not in user.websiteUrl %}http://{% endif %}{{ user.websiteUrl }}"
+                    <a href="{% if 'http' not in user.profile.websiteUrl and 'https' not in user.profile.websiteUrl %}http://{% endif %}{{ user.profile.websiteUrl }}"
                        class="text-primary"
-                       target="_blank">{{ user.websiteUrl }}</a>
+                       target="_blank">{{ user.profile.websiteUrl }}</a>
                 </div>
             {% endif %}
-            {% if user.location.townCity or user.location.country %}
+            {% if user.profile.townCityCounty or user.profile.country %}
                 <div>
                     {{include('shared/_icon.html.twig', {name: 'geo-alt', size: 16})}}
-                    {% if user.location.townCity %}
-                        <span>{{ user.location.townCity }},</span>
+                    {% if user.profile.townCityCounty %}
+                        <span>{{ user.profile.townCityCounty }},</span>
                     {% endif %}
-                    {% if user.location.country %}
-                        <span>{{ user.location.country }}</span>
+                    {% if user.profile.country %}
+                        <span>{{ user.profile.country }}</span>
                     {% endif %}
                 </div>
             {% endif %}
             <div>
                 {{include('shared/_icon.html.twig', {name: 'calendar4-week', size: 16})}}
-                <span>{{ user.createdAt|date('Y-m-d') }}</span>
+                <span>{{ user.profile.created|date('Y-m-d') }}</span>
             </div>
         </div>
     </div>
