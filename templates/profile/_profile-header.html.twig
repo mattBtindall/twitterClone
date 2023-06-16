@@ -2,7 +2,12 @@
     <div class="d-flex justify-content-between align-items-end mb-3">
         <img src="{{ asset(profiles ~ user.profile.avatar) }}" alt="dogs" style="width: 128px;" class="mt-1 rounded-circle bg-dark p-2">
          {# Change to to say 'follow' or 'edit profile' #}
-        <button class="btn btn-outline-primary">Test btn</button>
+        {% if app.user == user %}
+            <a href="{{ path('app_settings_profile') }}" class="btn btn-outline-primary">Profile settings</a>
+        {% else %}
+            {{ include('follower/_follow_button.html.twig', {userToFollow: user}) }}
+        {% endif %}
+
     </div>
     {{ include('shared/_profile-summary.html.twig', {user: user}) }}
     <div class="d-flex flex-column mb-3">

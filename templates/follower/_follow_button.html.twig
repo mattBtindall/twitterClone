@@ -1,4 +1,4 @@
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') and app.user != userToFollow %}
     {% if app.user.follows is defined and not app.user.follows.contains(userToFollow) %}
         <a href="{{ path('app_follow', {id: userToFollow.id}) }}" class="btn btn-primary">Follow</a>
     {% else %}
