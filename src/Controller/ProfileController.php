@@ -45,10 +45,10 @@ class ProfileController extends AbstractController
     #[Route('/profile/{id}/followers', name: 'app_profile_followers')]
     public function followers(User $user): Response
     {
-        return $this->render('profile/following.html.twig', [
+        return $this->render('profile/followers.html.twig', [
             'pageTitle' => $user->getProfile()->getName(),
             'user' => $user,
-            'activeTab' => 'following'
+            'activeTab' => 'followers'
         ]);
     }
 }

@@ -3,12 +3,10 @@
     <div class="text-muted">{{ user.email }}</div>
     <div class="d-flex gap-2">
         <a href="{{ path('app_profile_following', {id: user.id}) }}">
-            {# <span class="fw-bold">{{ user.following|length }}</span> <span class="text-muted">following</span> #}
-            <span class="fw-bold">0</span> <span class="text-muted">following</span>
+            <span class="fw-bold">{{ user.follows|length }}</span> <span class="text-muted">following</span>
         </a>
         <a href="{{ path('app_profile_followers', {id: user.id}) }}">
-            {# <span class="fw-bold">{{ user.followers|length }}</span> <span class="text-muted">followers</span> #}
-            <span class="fw-bold">1</span> <span class="text-muted">followers</span>
+            <span class="fw-bold">{{ user.followers|length }}</span> <span class="text-muted">followers</span>
         </a>
     </div>
 </div>

@@ -1,11 +1,10 @@
 <div class="border-bottom px-3 py-3 d-flex justify-content-between align-items-center overflow-hidden">
     <a href="{{ path('app_profile_posts', {id: user.id}) }}" class="d-flex align-items-center gap-3">
-        <img src="{{ asset(profiles ~ user.avatar) }}" alt="dogs" style="width: 32px;" class="rounded-circle bg-dark p-2">
+        <img src="{{ asset(profiles ~ user.profile.avatar) }}" alt="dogs" style="width: 32px;" class="rounded-circle bg-dark p-2">
         <div class="d-flex flex-column">
-            <span>{{ user.name }}</span>
+            <span>{{ user.profile.name }}</span>
             <span class="text-muted d-none d-md-block">{{ user.email }} </span>
         </div>
     </a>
-    {# This needs sorting so when the user already follows it says unfollow, the link will have to change too #}
-    <a href="" class="btn btn-secondary">Test Button</a>
+    {{ include('follower/_follow_button.html.twig', {userToFollow: user}) }}
 </div>
