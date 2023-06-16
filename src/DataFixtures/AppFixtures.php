@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\UserProfile;
@@ -74,6 +75,18 @@ class AppFixtures extends Fixture
         $post4->setContent('This is just some test content for post 3');
         $post4->setUser($user2);
         $manager->persist($post4);
+
+        $comment1 = new Comment();
+        $comment1->setContent('This is a random comment1 on post 1 hehe');
+        $comment1->setUser($user1);
+        $comment1->setPost($post1);
+        $manager->persist($comment1);
+
+        $comment2 = new Comment();
+        $comment2->setContent('This is a random comment2 on post 1 hehe');
+        $comment2->setUser($user2);
+        $comment2->setPost($post1);
+        $manager->persist($comment2);
 
         $manager->flush();
     }
