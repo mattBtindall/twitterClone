@@ -1,6 +1,5 @@
 {% extends 'profile/_profile-base.html.twig' %}
 
 {% block tabContent %}
-    {# update below when added like functionality #}
-    {# {{ include('post/_posts-list.html.twig', { posts: user.likes, emptyListTitle: 'No liked posts'}) }} #}
+    {{ include('post/_posts-list.html.twig', { posts: user.likes, emptyListTitle: 'No liked posts'}) }}
 {% endblock %}
