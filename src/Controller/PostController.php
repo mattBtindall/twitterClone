@@ -8,9 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// Used for test data
-// require_once '../public/Constants/Constants.php';
-
 class PostController extends AbstractController
 {
     #[Route('/posts/{openPostInput?}', name: 'app_posts', defaults: ['openPostInput' => false])]
@@ -33,34 +30,20 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/{id}/edit', name: 'app_post_edit')]
-    public function edit($id): Response
+    public function edit(Post $post): Response
     {
-        $post = array_values(array_filter(POSTS, function($value) use($id) {
-            if ($value['id'] == $id) {
-                return true;
-            }
-        }))[0];
-
         return $this->render('post/edit.html.twig', [
             'pageTitle' => 'Edit',
-            'user' => USER,
             'post' => $post,
             'editPost' => true
         ]);
     }
 
     #[Route('/post/{id}/comment', name: 'app_post_comment')]
-    public function comment($id): Response
+    public function comment(Post $post): Response
     {
-        $post = array_values(array_filter(POSTS, function($value) use($id) {
-            if ($value['id'] == $id) {
-                return true;
-            }
-        }))[0];
-
         return $this->render('post/comment.html.twig', [
             'pageTitle' => 'Comment',
-            'user' => USER,
             'post' => $post,
             'comment' => true
         ]);

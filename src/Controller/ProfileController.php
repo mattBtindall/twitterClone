@@ -7,9 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// Used for test data
-// require_once '../public/Constants/Constants.php';
-
 class ProfileController extends AbstractController
 {
     #[Route('/profile/{id}', name: 'app_profile_posts')]

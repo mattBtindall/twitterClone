@@ -7,7 +7,7 @@
     <footer class="post__footer d-flex justify-content-between">
         <a href="{{ path('app_post_comment', {id: post.id}) }}" class="post__icon">
             {{include('shared/_icon.html.twig', {name: 'chat-left', size: 24})}}
-            {# <span class="ms-1">{{ post.comments|length }}</span> #}
+            <span class="ms-1">{{ post.comments|length }}</span>
         </a>
         <a href="{{ path('app_post_edit', {id: post.id, post: post})}}" class="post__icon">
             {{include('shared/_icon.html.twig', {name: 'pencil-square', size: 24})}}
