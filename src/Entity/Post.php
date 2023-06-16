@@ -30,10 +30,15 @@ class Post
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likes')]
+    #[ORM\JoinTable('likes')] // add this here to change the name of the table if not it would be post_user
+    private Collection $likedBy;
+
     public function __construct()
     {
         $this->created = new DateTime();
         $this->comments = new ArrayCollection();
+        $this->likedBy = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -103,6 +108,30 @@ class Post
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedBy(): Collection
+    {
+        return $this->likedBy;
+    }
+
+    public function addLike(User $likedBy): self
+    {
+        if (!$this->likedBy->contains($likedBy)) {
+            $this->likedBy->add($likedBy);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $likedBy): self
+    {
+        $this->likedBy->removeElement($likedBy);
 
         return $this;
     }
