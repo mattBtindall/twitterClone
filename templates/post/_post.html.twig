@@ -1,3 +1,4 @@
+{% set constants = post_constants() %}
 <div class="post border-bottom px-3 py-4 d-inline-block w-100 position-relative {{ classes|default('') }}">
     <a href="{{ path('app_post_show', {id: post.id}) }}" class="post-show-link {% if hidePostLink is defined %}d-none{% endif %}"></a>
     {{ include('post/_post-header.html.twig') }}
@@ -9,10 +10,9 @@
             {{include('shared/_icon.html.twig', {name: 'chat-left', size: 24})}}
             <span class="ms-1">{{ post.comments|length }}</span>
         </a>
-        <a href="{{ path('app_post_edit', {id: post.id, post: post})}}" class="post__icon">
+        <a href="{{ is_granted(constants.EDIT, post) ? path('app_post_edit', {id: post.id, post: post}) : '#'}}" class="post__icon">
             {{include('shared/_icon.html.twig', {name: 'pencil-square', size: 24})}}
         </a>
-
         <a href="{{ path(post.likedBy.contains(app.user) ? 'app_unlike' : 'app_like', {id: post.id})}}" class="d-flex post__icon">
             {{include('shared/_icon.html.twig', {name: 'hand-thumbs-up', size: 24})}}
             <span class="ms-1 lh-sm align-self-center">{{ post.likedBy.count }}</span>

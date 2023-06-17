@@ -12,6 +12,9 @@ use App\Repository\PostRepository;
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
+    public const EDIT = 'POST_EDIT';
+    public const VIEW = 'POST_VIEW';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
