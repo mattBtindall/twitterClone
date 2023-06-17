@@ -7,6 +7,7 @@ use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class PostController extends AbstractController
 {
@@ -40,6 +41,7 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/{id}/comment', name: 'app_post_comment')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function comment(Post $post): Response
     {
         return $this->render('post/comment.html.twig', [
