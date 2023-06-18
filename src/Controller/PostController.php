@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\MainInputType;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -12,12 +14,26 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class PostController extends AbstractController
 {
     #[Route('/posts/{openPostInput?}', name: 'app_posts', defaults: ['openPostInput' => false])]
-    public function index($openPostInput, PostRepository $posts): Response
+    public function index($openPostInput, PostRepository $posts, Request $request): Response
     {
+        $form = $this->createForm(MainInputType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = new Post();
+            $post->setUser($this->getUser());
+            $post->setContent($form->getData('post')['post']);
+            $posts->save($post, true);
+
+            $this->addFlash('success', 'Your post has been added');
+            return $this->redirectToRoute('app_posts');
+        }
+
         return $this->render('post/posts.html.twig', [
             'pageTitle' => 'Home',
             'posts' => $posts->findAll(),
-            'openPostInput' => $openPostInput
+            'openPostInput' => $openPostInput,
+            'mainInputForm' => $form
         ]);
     }
 
