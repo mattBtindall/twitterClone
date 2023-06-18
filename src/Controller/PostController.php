@@ -3,13 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\Comment;
 use App\Form\MainInputType;
 use App\Repository\PostRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CommentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AbstractController
 {
@@ -58,12 +60,27 @@ class PostController extends AbstractController
 
     #[Route('/post/{id}/comment', name: 'app_post_comment')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function comment(Post $post): Response
+    public function comment(Post $post, CommentRepository $comments, Request $request): Response
     {
+        $form = $this->createForm(MainInputType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment = new Comment();
+            $comment->setUser($this->getUser());
+            $comment->setPost($post);
+            $comment->setContent($form->getData('post')['post']);
+            $comments ->save($comment, true);
+
+            $this->addFlash('success', 'Your comment has been added');
+            return $this->redirectToRoute('app_post_show', ['id' => $post->getId()]);
+        }
+
         return $this->render('post/comment.html.twig', [
             'pageTitle' => 'Comment',
             'post' => $post,
-            'comment' => true
+            'comment' => true,
+            'mainInputForm' => $form
         ]);
     }
 }
