@@ -39,6 +39,14 @@ class PostRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllDsc()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.created', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */
