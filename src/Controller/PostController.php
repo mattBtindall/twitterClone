@@ -49,12 +49,25 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/{id}/edit', name: 'app_post_edit')]
-    public function edit(Post $post): Response
+    public function edit(Post $post, PostRepository $posts, Request $request): Response
     {
+        $form = $this->createForm(MainInputType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post->setContent($form->getData('post')['post']);
+            $posts->save($post, true);
+
+            $this->addFlash('success', 'Your post has been edited');
+            return $this->redirectToRoute('app_posts');
+        }
+
+        $form->get('post')->setData($post->getContent());
         return $this->render('post/edit.html.twig', [
             'pageTitle' => 'Edit',
             'post' => $post,
-            'editPost' => true
+            'editPost' => true,
+            'mainInputForm' => $form
         ]);
     }
 
@@ -70,7 +83,7 @@ class PostController extends AbstractController
             $comment->setUser($this->getUser());
             $comment->setPost($post);
             $comment->setContent($form->getData('post')['post']);
-            $comments ->save($comment, true);
+            $comments->save($comment, true);
 
             $this->addFlash('success', 'Your comment has been added');
             return $this->redirectToRoute('app_post_show', ['id' => $post->getId()]);
