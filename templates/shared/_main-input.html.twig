@@ -1,0 +1,13 @@
+{% if mainInputForm is defined %}
+    {% set is_active = (editPost is defined or comment is defined or (openPostInput is defined and openPostInput == 'true')) ? 'active' : ''  %}
+    {% set placeholder_text = (comment is defined) ? 'comment' : 'post' %}
+
+    {% form_theme mainInputForm 'bootstrap_5_layout.html.twig' %}
+    {{ form_start(mainInputForm, {'attr': {class: 'post-container d-flex gap-2 align-items-start ' ~ is_active}}) }}
+        {{ include('shared/_avatar.html.twig', { iconClasses: ''})}}
+        <div class="d-flex flex-column flex-grow-1 align-items-end gap-2">
+            {{ form_widget(mainInputForm.post, {'attr': {class: 'form-control-lg mb-2', placeholder: 'Please type your ' ~  placeholder_text ~ ' here.' }}) }}
+            <button class="btn btn-primary w-25">{% if comment is defined %}Comment{% else %}Post{% endif %}</button>
+        </div>
+    {{ form_end(mainInputForm) }}
+{% endif %}
