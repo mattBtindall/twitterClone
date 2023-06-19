@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ pageTitle }} {% endblock %}
+
+{% block breadcrumbs %}
+    → <a href="{{ path('app_profile_posts', {id: app.user.id}) }}">User</a> → {{ pageTitle }}
+{% endblock %}
+
+{% block content %}
+    <ul class="profile__tabs py-4">
+        <li class="{{ activeTab == 'details' ? 'active'}}"><a href="{{ path('app_settings_profile')}}">Details</a></li>
+        <li class="{{ activeTab == 'imageUpload' ? 'active'}}"><a href="{{ path('app_settings_profile_image')}}">Image Upload</a></li>
+    </ul>
+    {% block tabContent %}{% endblock %}
+{% endblock %}

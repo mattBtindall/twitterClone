@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('IS_AUTHENTICATED_FULLY')]
 class SettingsProfileController extends AbstractController
 {
     #[Route('/settings/profile', name: 'app_settings_profile')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function profile(
         Request $request,
         UserRepository $users
@@ -42,9 +42,10 @@ class SettingsProfileController extends AbstractController
             return $this->redirectToRoute('app_settings_profile');
         }
 
-        return $this->render('settings_profile/profile.html.twig', [
-            'pageTitle' => 'Profile Settings',
-            'form' => $form->createView()
+        return $this->render('settings_profile/settings-profile.html.twig', [
+            'pageTitle' => 'Profile Settings (details)',
+            'form' => $form->createView(),
+            'activeTab' => 'details'
         ]);
     }
 }
