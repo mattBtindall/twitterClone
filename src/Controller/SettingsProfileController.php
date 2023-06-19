@@ -48,4 +48,14 @@ class SettingsProfileController extends AbstractController
             'activeTab' => 'details'
         ]);
     }
+
+    #[Route('/settings/profile-image', name: 'app_settings_profile_image')]
+    public function profileImage(): Response
+    {
+        return $this->render('settings_profile/profile-image.html.twig', [
+            'pageTitle' => 'Profile Settings (avatar upload)',
+            // 'form' => $form->createView()
+            'activeTab' => 'imageUpload'
+        ]);
+    }
 }
