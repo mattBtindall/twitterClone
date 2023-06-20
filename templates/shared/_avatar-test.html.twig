@@ -1,0 +1,5 @@
+{% if is_granted('IS_FULLY_AUTHENTICATED') %}
+    <img src="{{ asset(profiles ~ user.profile.avatar) }}" alt="dogs" style="width: 64px;" class="{{ iconClasses }} rounded-circle bg-dark p-2">
+{% else %}
+    {{ include ('shared/_icon.html.twig', { name : 'question-circle-fill', size: 32, classes: iconClasses })}}
+{% endif %}
