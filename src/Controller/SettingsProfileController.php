@@ -99,6 +99,5 @@ class SettingsProfileController extends AbstractController
         }
 
         return $this->render('settings_profile/profile-image.html.twig', $templateParams);
-
     }
 }

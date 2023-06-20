@@ -1,5 +1,7 @@
-{% if is_granted('IS_FULLY_AUTHENTICATED') %}
-    <img src="{{ asset(profiles ~ user.profile.avatar) }}" alt="dogs" style="width: 64px;" class="{{ iconClasses }} rounded-circle bg-dark p-2">
+{% if profile and profile.avatar %}
+    <div class="avatar-container {{ classes|default('') }}" style="width: {{ size }}px; height: {{ size }}px;">
+        <img src="{{ asset(profiles ~ profile.avatar) }}" alt="">
+    </div>
 {% else %}
-    {{ include ('shared/_icon.html.twig', { name : 'question-circle-fill', size: 32, classes: iconClasses })}}
+    <div class="avatar-container bg-light border-dark {{ classes|default('') }}" style="width: {{ size }}px; height: {{ size }}px;"></div>
 {% endif %}
