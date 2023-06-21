@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -46,6 +47,45 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findAllWithLikes()
+    {
+        return $this->findAllQuery(
+            withLikes: true
+        )->getQuery()->getResult();
+    }
+
+    private function findAllQuery(
+        bool $withComments = false,
+        bool $withLikes = false,
+        bool $withUsers = false,
+        bool $withProfiles = false
+    ): QueryBuilder
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if ($withComments) {
+            $query->leftJoin('p.comments', 'c')
+                ->addSelect('c');
+        }
+
+        if ($withLikes) {
+            $query->leftJoin('p.likedBy', 'l')
+                ->addSelect('l');
+        }
+
+        if ($withUsers || $withProfiles) {
+            $query->leftJoin('p.user', 'u')
+                ->addSelect('u');
+        }
+
+        if ($withProfiles) {
+            $query->leftJoin('u.profile', 'up')
+                ->addSelect('up');
+        }
+
+        return $query->orderBy('p.created', 'DESC');
     }
 //    /**
 //     * @return Post[] Returns an array of Post objects
