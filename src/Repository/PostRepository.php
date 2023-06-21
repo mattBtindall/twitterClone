@@ -42,17 +42,11 @@ class PostRepository extends ServiceEntityRepository
 
     public function findAllDsc()
     {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.created', 'DESC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    public function findAllWithLikes()
-    {
         return $this->findAllQuery(
-            withLikes: true
+            withComments: true,
+            withLikes: true,
+            withUsers: true,
+            withProfiles: true
         )->getQuery()->getResult();
     }
 
@@ -81,7 +75,7 @@ class PostRepository extends ServiceEntityRepository
         }
 
         if ($withProfiles) {
-            $query->leftJoin('u.profile', 'up')
+            $query->leftJoin('u.Profile', 'up')
                 ->addSelect('up');
         }
 

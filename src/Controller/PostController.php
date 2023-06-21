@@ -33,7 +33,7 @@ class PostController extends AbstractController
 
         return $this->render('post/posts.html.twig', [
             'pageTitle' => 'Home',
-            'posts' => $posts->findAllWithLikes(),
+            'posts' => $posts->findAllDsc(),
             'openPostInput' => $openPostInput,
             'mainInputForm' => $form
         ]);
