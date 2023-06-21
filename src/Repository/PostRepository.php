@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Post;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,6 +40,32 @@ class PostRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllWithMinLikes(int $minLikes): array
+    {
+        $idList = $this->findAllQuery(
+            withLikes: true
+        )
+            ->select('p.id') // only need the id here
+            ->groupBy('p.id') // use aggregate function so we perform the below on it if not doctrine gets confused and doesn't know what to perforom the below on
+            ->having('COUNT(l) >= :minLikes')
+            ->setParameter('minLikes', $minLikes)
+            ->getQuery()
+            ->getResult(Query::HYDRATE_SCALAR_COLUMN) // returns a standard array of the post ids if not using this it is still asssoc array so below wouldn't work
+        ;
+
+        return $this->findAllQuery(
+            withComments: true,
+            withLikes: true,
+            withUsers: true,
+            withProfiles: true
+        )
+            ->where('p.id in (:idList)')
+            ->setParameter('idList', $idList)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     public function findAllByUser(

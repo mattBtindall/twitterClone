@@ -40,11 +40,11 @@ class PostController extends AbstractController
     }
 
     #[Route('/favourites', name: 'app_post_favourites')]
-    public function favourites()
+    public function favourites(PostRepository $posts)
     {
         return $this->render('post/favourites.html.twig', [
             'pageTitle' => 'Favourites',
-            'favouritePosts' => 'test'
+            'favouritePosts' => $posts->findAllWithMinLikes(2)
         ]);
     }
 
