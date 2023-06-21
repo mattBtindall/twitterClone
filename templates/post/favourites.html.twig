@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ pageTitle }} {% endblock %}
+
+{% block content %}
+    {{ include('post/_posts-list.html.twig', {posts: favouritePosts}) }}
+{% endblock %}

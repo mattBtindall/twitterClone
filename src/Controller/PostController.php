@@ -39,6 +39,15 @@ class PostController extends AbstractController
         ]);
     }
 
+    #[Route('/favourites', name: 'app_post_favourites')]
+    public function favourites()
+    {
+        return $this->render('post/favourites.html.twig', [
+            'pageTitle' => 'Favourites',
+            'favouritePosts' => 'test'
+        ]);
+    }
+
     #[Route('/post/{id}', name: 'app_post_show')]
     public function show(Post $post): Response
     {
