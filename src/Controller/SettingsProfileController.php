@@ -94,7 +94,7 @@ class SettingsProfileController extends AbstractController
                 $profile->setAvatar($newFileName);
                 $users->save($user, true);
                 $this->addFlash('success', 'Your profile image was uploaded');
-                $this->redirectToRoute('app_settings_profile_image');
+                return $this->redirectToRoute('app_settings_profile_image');
             }
         }
 

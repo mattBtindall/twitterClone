@@ -12,7 +12,7 @@
         <input type="hidden" id="route" value="{{ app.request.attributes.get('_route') }}" />
         <input type="hidden" id="posts_path" value="{{ app.request.getSchemeAndHttpHost() ~ path('app_posts') }}" />
 
-        {{ include('shared/_avatar.html.twig', { profile: app.user.profile, size: 64, classes: 'sidebar-icon position-fixed ms-3 mt-1' }) }}
+        {{ include('shared/_avatar.html.twig', { profile: app.user.profile|default(''), size: 64, classes: 'sidebar-icon position-fixed ms-3 mt-1' }) }}
         <section class="page overflow-hidden position-relative d-block d-md-flex">
             <aside class="sidebar">{{ include('_sidebar.html.twig') }}</aside>
             <div class="main position-relative">
