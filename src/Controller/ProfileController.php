@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,12 +11,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     #[Route('/profile/{id}', name: 'app_profile_posts')]
-    public function index(User $user): Response
+    public function index(
+        User $user,
+        PostRepository $posts
+    ): Response
     {
         return $this->render('profile/profile.html.twig', [
             'pageTitle' => $user->getProfile()->getName(),
             'user' => $user,
-            'activeTab' => 'posts'
+            'activeTab' => 'posts',
+            'posts' => $posts->findAllByUser($user)
         ]);
     }
 

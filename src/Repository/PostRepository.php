@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,6 +39,26 @@ class PostRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllByUser(
+        int | User $user
+    ): array
+    {
+        return $this->findAllQuery(
+            withComments: true,
+            withLikes: true,
+            withUsers: true,
+            withProfiles: true
+        )
+            ->where('p.user = :user')
+            ->setParameter(
+                'user',
+                $user instanceof User ? $user->getId() : $user
+            )
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     public function findAllDsc()
