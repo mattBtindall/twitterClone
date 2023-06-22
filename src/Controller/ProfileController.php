@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,12 +26,16 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/{id}/likes', name: 'app_profile_likes')]
-    public function likes(User $user): Response
+    public function likes(
+        User $user,
+        UserRepository $users
+    ): Response
     {
         return $this->render('profile/likes.html.twig', [
             'pageTitle' => $user->getProfile()->getName(),
             'user' => $user,
-            'activeTab' => 'likes'
+            'activeTab' => 'likes',
+            'posts' => $users->findLikedPostsByUser($user)
         ]);
     }
 
