@@ -15,8 +15,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AbstractController
 {
+    #[Route('/')]
+    public function index(): Response
+    {
+        return $this->redirectToRoute('app_posts');
+    }
+
     #[Route('/posts/{openPostInput?}', name: 'app_posts', defaults: ['openPostInput' => false])]
-    public function index($openPostInput, PostRepository $posts, Request $request): Response
+    public function posts($openPostInput, PostRepository $posts, Request $request): Response
     {
         $form = $this->createForm(MainInputType::class);
 
