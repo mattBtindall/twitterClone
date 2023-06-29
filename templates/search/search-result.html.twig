@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ pageTitle }} {% endblock %}
+
+{% block breadcrumbs %}
+    → {{ pageTitle }}
+{% endblock %}
+
+{% block content %}
+    {{ include('profile/_users-list.html.twig', { users: users, emptyListTitle: 'No users to display here'}) }}
+{% endblock %}
