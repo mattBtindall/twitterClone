@@ -13,10 +13,13 @@ class ProfileController extends AbstractController
 {
     #[Route('/profile/{id}', name: 'app_profile_posts')]
     public function index(
-        User $user,
-        PostRepository $posts
+        $id,
+        PostRepository $posts,
+        UserRepository $users
     ): Response
     {
+        $user = $users->findUserWithAll($id);
+
         return $this->render('profile/profile.html.twig', [
             'pageTitle' => $user->getProfile()->getName(),
             'user' => $user,
