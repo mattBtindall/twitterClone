@@ -1,0 +1,9 @@
+{{ form_start(searchForm, {'attr': {}}) }}
+    {{ form_widget(searchForm.searchTerm, {'attr': {
+            class: 'search-input rounded ps-2',
+            placeholder: 'Search',
+            minLength: 2
+        }
+    }) }}
+    {{ form_errors(searchForm.searchTerm) }}
+{{ form_end(searchForm) }}
