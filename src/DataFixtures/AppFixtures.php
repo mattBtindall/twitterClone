@@ -31,9 +31,7 @@ class AppFixtures extends Fixture
         $countries = ['USA', 'UK', 'FR', 'UK', 'SCT', 'GR', 'SPN', 'GR', 'USA'];
 
         for ($i = 0; $i < count($emails); $i++) {
-            /**
-             * Add users
-             */
+            /** Add users */
             $users[] = $this->createUser($manager, [
                 'email' => $emails[$i],
                 'password' => $passwords[0],
@@ -43,9 +41,7 @@ class AppFixtures extends Fixture
                 'country' => $countries[$i]
             ]);
 
-            /**
-             * Add random number of posts
-             */
+            /** Add random number of posts */
             $posts[] = $this->createRandomNumberOfEntities(10, function() use($manager, $i, $users) {
                 return $this->createPost(
                     $manager,
@@ -62,9 +58,7 @@ class AppFixtures extends Fixture
         }
 
         for ($j = 0; $j < count($allPosts); $j++) {
-            /**
-             * Add random number of Comments
-             */
+            /** Add random number of Comments */
             $comments = $this->createRandomNumberOfEntities(2, function() use($manager, $allPosts, $j) {
                 $this->createComment(
                     $manager,
@@ -73,6 +67,9 @@ class AppFixtures extends Fixture
                     $allPosts[$j]
                 );
             });
+
+            /** Add random number of likes */
+            $this->createRandomNumberOfLikes($allPosts[$j], $users);
         }
 
         $manager->flush();
@@ -131,5 +128,28 @@ class AppFixtures extends Fixture
         }
 
         return $entities;
+    }
+
+    private function createRandomNumberOfLikes(Post $post, array $users): void
+    {
+        $randomUserIndexes = [];
+        $numberOfLikes = random_int(0, 3);
+
+        // get random (but unique) users totalling the numberOfLikes
+        for ($i = 0; $i < $numberOfLikes; $i++) {
+            // same person can't like it twice
+            $flag = false;
+            while (!$flag) {
+                $ranNo = random_int(0, count($users) - 1);
+                if (!in_array($ranNo, $randomUserIndexes)) {
+                    $randomUserIndexes[] = $ranNo;
+                    $flag = true;
+                }
+            }
+        }
+
+        foreach ($randomUserIndexes as $i) {
+            $post->addLike($users[$i]);
+        }
     }
 }
