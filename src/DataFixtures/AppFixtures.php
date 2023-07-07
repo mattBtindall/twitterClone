@@ -20,74 +20,116 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
-        /** @var User $user1 */
+        $users = [];
 
-        $user1 = new User();
-        $user1->setEmail('test@test.com');
-        $user1->setPassword(
-            $this->userPasswordHasher->hashPassword(
-                $user1,
-                '123456'
-            )
-        );
-        $user1Profile = new UserProfile();
-        $user1Profile->setName('test');
-        $user1Profile->setAvatar('default.png');
-        $user1Profile->setDateOfBirth(new DateTime());
-        $user1Profile->setTownCityCounty('Yorkshire');
-        $user1Profile->setCountry('United Kingdom');
-        $user1->setProfile($user1Profile);
-        $manager->persist($user1);
+        /** User content */
+        $emails = ['test1@test.com', 'test2@test.com', 'test3@test.com', 'test4@test.com', 'test5@test.com', 'test6@test.com', 'test7@test.com', 'test8@test.com', 'test9@test.com', ];
+        $passwords = ['123456'];
+        $names = ['test1', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8', 'test9'];
+        $dateOfBirths = [new DateTime()];
+        $townCityCounties = ['New York', 'Yorkshire', 'Paris', 'London', 'Glasgow', 'Berlin', 'Madrid', 'Passau', 'Cali'];
+        $countries = ['USA', 'UK', 'FR', 'UK', 'SCT', 'GR', 'SPN', 'GR', 'USA'];
 
-        $user2 = new User();
-        $user2->setEmail('matt@test.com');
-        $user2->setPassword(
-            $this->userPasswordHasher->hashPassword(
-                $user2,
-                '123456'
-            )
-        );
-        $user2Profile = new UserProfile();
-        $user2Profile->setName('test');
-        $user2Profile->setAvatar('default.png');
-        $user2Profile->setDateOfBirth(new DateTime());
-        $user2->setProfile($user2Profile);
-        $manager->persist($user2);
+        for ($i = 0; $i < count($emails); $i++) {
+            /**
+             * Add users
+             */
+            $users[] = $this->createUser($manager, [
+                'email' => $emails[$i],
+                'password' => $passwords[0],
+                'name' => $names[$i],
+                'dateOfBirth' => $dateOfBirths[0],
+                'townCityCounty' => $townCityCounties[$i],
+                'country' => $countries[$i]
+            ]);
 
-        $post1 = new Post();
-        $post1->setContent('This is just some test content for post 1');
-        $post1->setUser($user1);
-        $manager->persist($post1);
+            /**
+             * Add random number of posts
+             */
+            $posts[] = $this->createRandomNumberOfEntities(10, function() use($manager, $i, $users) {
+                return $this->createPost(
+                    $manager,
+                    'This is just some content for user' . ($i + 1),
+                    $users[$i]
+                );
+            });
+        }
 
-        $post2 = new Post();
-        $post2->setContent('This is just some test content for post 2');
-        $post2->setUser($user1);
-        $manager->persist($post2);
+        // convert posts from multidimensional array into one long array
+        $allPosts = [];
+        foreach ($posts as $post) {
+            array_push($allPosts, ...$post);
+        }
 
-        $post3 = new Post();
-        $post3->setContent('This is just some test content for post 3');
-        $post3->setUser($user1);
-        $manager->persist($post3);
-
-        $post4 = new Post();
-        $post4->setContent('This is just some test content for post 3');
-        $post4->setUser($user2);
-        $manager->persist($post4);
-
-        $comment1 = new Comment();
-        $comment1->setContent('This is a random comment1 on post 1 hehe');
-        $comment1->setUser($user1);
-        $comment1->setPost($post1);
-        $manager->persist($comment1);
-
-        $comment2 = new Comment();
-        $comment2->setContent('This is a random comment2 on post 1 hehe');
-        $comment2->setUser($user2);
-        $comment2->setPost($post1);
-        $manager->persist($comment2);
+        for ($j = 0; $j < count($allPosts); $j++) {
+            /**
+             * Add random number of Comments
+             */
+            $comments = $this->createRandomNumberOfEntities(2, function() use($manager, $allPosts, $j) {
+                $this->createComment(
+                    $manager,
+                    'This is a comment on post ' . ($j + 1),
+                    $allPosts[$j]->getUser(),
+                    $allPosts[$j]
+                );
+            });
+        }
 
         $manager->flush();
+    }
+
+    private function createUser(ObjectManager $manager, array $spec): User
+    {
+        $user = new User();
+        $user->setEmail($spec['email']);
+        $user->setPassword(
+            $this->userPasswordHasher->hashPassword(
+                $user,
+                $spec['password']
+            )
+        );
+        $userProfile = new UserProfile();
+        $userProfile->setName($spec['name']);
+        $userProfile->setAvatar('default.png');
+        $userProfile->setDateOfBirth($spec['dateOfBirth']);
+        $userProfile->setTownCityCounty($spec['townCityCounty']);
+        $userProfile->setCountry($spec['country']);
+        $user->setProfile($userProfile);
+        $manager->persist($user);
+
+        return $user;
+    }
+
+    private function createPost(ObjectManager $manager, string $content, User $user): Post
+    {
+        $post = new Post();
+        $post->setContent($content);
+        $post->setUser($user);
+        $manager->persist($post);
+
+        return $post;
+    }
+
+    private function createComment(ObjectManager $manager, string $content, User $user, Post $post): Comment
+    {
+        $comment = new Comment();
+        $comment->setContent($content);
+        $comment->setUser($user);
+        $comment->setPost($post);
+        $manager->persist($comment);
+
+        return $comment;
+    }
+
+    private function createRandomNumberOfEntities(int $max, $callback): Array
+    {
+        $randomInt = random_int(0, $max);
+        $entities = [];
+
+        for ($i = 0; $i < $randomInt; $i++) {
+            $entities[] = $callback();
+        }
+
+        return $entities;
     }
 }
