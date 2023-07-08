@@ -21,6 +21,8 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $users = [];
+        $maxNumberOfLikes = 3; // this is the max number of likes that a post will receive
+        $maxNumberOfFollowers = 5; // this is the max number of likes that a post will receive
 
         /** User content */
         $emails = ['test1@test.com', 'test2@test.com', 'test3@test.com', 'test4@test.com', 'test5@test.com', 'test6@test.com', 'test7@test.com', 'test8@test.com', 'test9@test.com', ];
@@ -51,25 +53,28 @@ class AppFixtures extends Fixture
             });
         }
 
+        $manager->flush(); // we need the users to get added to the database so that the id can be used for comparison
+        $this->createRandomFollowers($maxNumberOfFollowers, $users);
+
         // convert posts from multidimensional array into one long array
         $allPosts = [];
         foreach ($posts as $post) {
             array_push($allPosts, ...$post);
         }
 
-        for ($j = 0; $j < count($allPosts); $j++) {
+        foreach ($allPosts as $key => $post) {
             /** Add random number of Comments */
-            $comments = $this->createRandomNumberOfEntities(2, function() use($manager, $allPosts, $j) {
+            $comments = $this->createRandomNumberOfEntities(2, function() use($manager, $post, $key) {
                 $this->createComment(
                     $manager,
-                    'This is a comment on post ' . ($j + 1),
-                    $allPosts[$j]->getUser(),
-                    $allPosts[$j]
+                    'This is a comment on post ' . ($key + 1),
+                    $post->getUser(),
+                    $post
                 );
             });
 
             /** Add random number of likes */
-            $this->createRandomNumberOfLikes($allPosts[$j], $users);
+            $this->createRandomLikes($maxNumberOfLikes, $post, $users);
         }
 
         $manager->flush();
@@ -130,13 +135,13 @@ class AppFixtures extends Fixture
         return $entities;
     }
 
-    private function createRandomNumberOfLikes(Post $post, array $users): void
+    private function generateRandomUserIndexes(int $numberOfIndexes, array $users): array
     {
         $randomUserIndexes = [];
-        $numberOfLikes = random_int(0, 3);
+        $numberOfUsers = random_int(0, $numberOfIndexes);
 
-        // get random (but unique) users totalling the numberOfLikes
-        for ($i = 0; $i < $numberOfLikes; $i++) {
+        // get random (but unique) users
+        for ($i = 0; $i < $numberOfUsers; $i++) {
             // same person can't like it twice
             $flag = false;
             while (!$flag) {
@@ -148,8 +153,26 @@ class AppFixtures extends Fixture
             }
         }
 
+        return $randomUserIndexes;
+    }
+
+    private function createRandomLikes(int $maxNumberOfLikes, Post $post, array $users): void
+    {
+        $randomUserIndexes = $this->generateRandomUserIndexes($maxNumberOfLikes, $users);
         foreach ($randomUserIndexes as $i) {
             $post->addLike($users[$i]);
+        }
+    }
+
+    private function createRandomFollowers(int $maxNumberOfFollowers, array $users): void
+    {
+        foreach ($users as $user) {
+            $randomUserIndexes = $this->generateRandomUserIndexes($maxNumberOfFollowers, $users);
+            foreach ($randomUserIndexes as $i) {
+                if ($user->getId() !== $users[$i]->getId()) { // users can't follow themselves
+                    $user->addFollower($users[$i]);
+                }
+            }
         }
     }
 }
